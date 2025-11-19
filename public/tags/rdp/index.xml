@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rdp on Blowfish</title>
+    <title>Rdp on Memory</title>
     <link>http://localhost:1313/tags/rdp/</link>
-    <description>Recent content in Rdp on Blowfish</description>
+    <description>Recent content in Rdp on Memory</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 </copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Connexion RDP</title>
-      <link>http://localhost:1313/aides_memoires/tuto/rdp/</link>
+      <link>http://localhost:1313/aides_memoires/rdp/</link>
       <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/tuto/rdp/</guid>
+      <guid>http://localhost:1313/aides_memoires/rdp/</guid>
       <description>Tutoriel pour mettre en place une connexion RDP vers un appareil.</description>
       
     </item>

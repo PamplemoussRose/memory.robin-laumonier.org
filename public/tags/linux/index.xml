@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on Blowfish</title>
+    <title>Linux on Memory</title>
     <link>http://localhost:1313/tags/linux/</link>
-    <description>Recent content in Linux on Blowfish</description>
+    <description>Recent content in Linux on Memory</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 </copyright>
@@ -11,40 +11,40 @@
     
     <item>
       <title>Serveur web auto-hébergé</title>
-      <link>http://localhost:1313/aides_memoires/tuto/serveur-nginx/</link>
+      <link>http://localhost:1313/aides_memoires/serveur-nginx/</link>
       <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/tuto/serveur-nginx/</guid>
+      <guid>http://localhost:1313/aides_memoires/serveur-nginx/</guid>
       <description>Tutoriel pour mettre en place un serveur web auto-hébergé avec Nginx sur une machine linux.</description>
       
     </item>
     
     <item>
       <title>Mise en place UFW</title>
-      <link>http://localhost:1313/aides_memoires/tuto/firewall/</link>
+      <link>http://localhost:1313/aides_memoires/firewall/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/tuto/firewall/</guid>
+      <guid>http://localhost:1313/aides_memoires/firewall/</guid>
       <description>Tutoriel pour mettre en place Uncomplicated FireWall.</description>
       
     </item>
     
     <item>
       <title>Connexion SSH avec clés RSA</title>
-      <link>http://localhost:1313/aides_memoires/tuto/ssh-rsa/</link>
+      <link>http://localhost:1313/aides_memoires/ssh-rsa/</link>
       <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/tuto/ssh-rsa/</guid>
+      <guid>http://localhost:1313/aides_memoires/ssh-rsa/</guid>
       <description>Tutoriel pour mettre en place une connexion SSH sécurisée par clés RSA vers un appareil.</description>
       
     </item>
     
     <item>
       <title>Commandes Shell basiques</title>
-      <link>http://localhost:1313/aides_memoires/memo/shell-basics/</link>
+      <link>http://localhost:1313/aides_memoires/shell-basics/</link>
       <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/memo/shell-basics/</guid>
+      <guid>http://localhost:1313/aides_memoires/shell-basics/</guid>
       <description>Toutes les commandes de base pour utiliser le shell linux.</description>
       
     </item>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cloudflare on Blowfish</title>
+    <title>Cloudflare on Memory</title>
     <link>http://localhost:1313/tags/cloudflare/</link>
-    <description>Recent content in Cloudflare on Blowfish</description>
+    <description>Recent content in Cloudflare on Memory</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 </copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>DNS Dynamique</title>
-      <link>http://localhost:1313/aides_memoires/tuto/dyndns/</link>
+      <link>http://localhost:1313/aides_memoires/dyndns/</link>
       <pubDate>Mon, 17 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/tuto/dyndns/</guid>
+      <guid>http://localhost:1313/aides_memoires/dyndns/</guid>
       <description>Tutoriel pour mettre en place un DNS dynamique vers un site web à l&amp;rsquo;aide de Cloudflare.</description>
       
     </item>

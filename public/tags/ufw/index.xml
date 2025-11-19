@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ufw on Blowfish</title>
+    <title>Ufw on Memory</title>
     <link>http://localhost:1313/tags/ufw/</link>
-    <description>Recent content in Ufw on Blowfish</description>
+    <description>Recent content in Ufw on Memory</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 </copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Mise en place UFW</title>
-      <link>http://localhost:1313/aides_memoires/tuto/firewall/</link>
+      <link>http://localhost:1313/aides_memoires/firewall/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/tuto/firewall/</guid>
+      <guid>http://localhost:1313/aides_memoires/firewall/</guid>
       <description>Tutoriel pour mettre en place Uncomplicated FireWall.</description>
       
     </item>

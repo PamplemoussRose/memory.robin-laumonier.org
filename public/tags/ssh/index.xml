@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ssh on Blowfish</title>
+    <title>Ssh on Memory</title>
     <link>http://localhost:1313/tags/ssh/</link>
-    <description>Recent content in Ssh on Blowfish</description>
+    <description>Recent content in Ssh on Memory</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 </copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Connexion SSH avec clés RSA</title>
-      <link>http://localhost:1313/aides_memoires/tuto/ssh-rsa/</link>
+      <link>http://localhost:1313/aides_memoires/ssh-rsa/</link>
       <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/tuto/ssh-rsa/</guid>
+      <guid>http://localhost:1313/aides_memoires/ssh-rsa/</guid>
       <description>Tutoriel pour mettre en place une connexion SSH sécurisée par clés RSA vers un appareil.</description>
       
     </item>

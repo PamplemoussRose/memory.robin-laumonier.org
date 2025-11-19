@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Home on Blowfish</title>
+    <title>Home on Memory</title>
     <link>http://localhost:1313/</link>
-    <description>Recent content in Home on Blowfish</description>
+    <description>Recent content in Home on Memory</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 </copyright>
@@ -11,80 +11,80 @@
     
     <item>
       <title>Tuto Hugo avec Blowfish</title>
-      <link>http://localhost:1313/aides_memoires/tuto/hugo/</link>
+      <link>http://localhost:1313/aides_memoires/hugo/</link>
       <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/tuto/hugo/</guid>
+      <guid>http://localhost:1313/aides_memoires/hugo/</guid>
       <description>Tutoriel d&amp;rsquo;installation et de configuration pour créer un site avec Hugo.</description>
       
     </item>
     
     <item>
       <title>DNS Dynamique</title>
-      <link>http://localhost:1313/aides_memoires/tuto/dyndns/</link>
+      <link>http://localhost:1313/aides_memoires/dyndns/</link>
       <pubDate>Mon, 17 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/tuto/dyndns/</guid>
+      <guid>http://localhost:1313/aides_memoires/dyndns/</guid>
       <description>Tutoriel pour mettre en place un DNS dynamique vers un site web à l&amp;rsquo;aide de Cloudflare.</description>
       
     </item>
     
     <item>
       <title>Serveur web auto-hébergé</title>
-      <link>http://localhost:1313/aides_memoires/tuto/serveur-nginx/</link>
+      <link>http://localhost:1313/aides_memoires/serveur-nginx/</link>
       <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/tuto/serveur-nginx/</guid>
+      <guid>http://localhost:1313/aides_memoires/serveur-nginx/</guid>
       <description>Tutoriel pour mettre en place un serveur web auto-hébergé avec Nginx sur une machine linux.</description>
       
     </item>
     
     <item>
       <title>Mise en place UFW</title>
-      <link>http://localhost:1313/aides_memoires/tuto/firewall/</link>
+      <link>http://localhost:1313/aides_memoires/firewall/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/tuto/firewall/</guid>
+      <guid>http://localhost:1313/aides_memoires/firewall/</guid>
       <description>Tutoriel pour mettre en place Uncomplicated FireWall.</description>
       
     </item>
     
     <item>
       <title>Connexion RDP</title>
-      <link>http://localhost:1313/aides_memoires/tuto/rdp/</link>
+      <link>http://localhost:1313/aides_memoires/rdp/</link>
       <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/tuto/rdp/</guid>
+      <guid>http://localhost:1313/aides_memoires/rdp/</guid>
       <description>Tutoriel pour mettre en place une connexion RDP vers un appareil.</description>
       
     </item>
     
     <item>
       <title>Connexion SSH avec clés RSA</title>
-      <link>http://localhost:1313/aides_memoires/tuto/ssh-rsa/</link>
+      <link>http://localhost:1313/aides_memoires/ssh-rsa/</link>
       <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/tuto/ssh-rsa/</guid>
+      <guid>http://localhost:1313/aides_memoires/ssh-rsa/</guid>
       <description>Tutoriel pour mettre en place une connexion SSH sécurisée par clés RSA vers un appareil.</description>
       
     </item>
     
     <item>
       <title>Commandes cmd basiques</title>
-      <link>http://localhost:1313/aides_memoires/memo/cmd-basic/</link>
+      <link>http://localhost:1313/aides_memoires/cmd-basic/</link>
       <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/memo/cmd-basic/</guid>
+      <guid>http://localhost:1313/aides_memoires/cmd-basic/</guid>
       <description>Toutes les commandes de base pour utiliser le cmd Microsoft.</description>
       
     </item>
     
     <item>
       <title>Commandes Shell basiques</title>
-      <link>http://localhost:1313/aides_memoires/memo/shell-basics/</link>
+      <link>http://localhost:1313/aides_memoires/shell-basics/</link>
       <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/memo/shell-basics/</guid>
+      <guid>http://localhost:1313/aides_memoires/shell-basics/</guid>
       <description>Toutes les commandes de base pour utiliser le shell linux.</description>
       
     </item>
