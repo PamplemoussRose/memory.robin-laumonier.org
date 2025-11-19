@@ -1,0 +1,84 @@
+# -- Main Menu --
+# The main menu is displayed in the header at the top of the page.
+# Acceptable parameters are name, pageRef, page, url, title, weight.
+# 
+# The simplest menu configuration is to provide:
+#   name = The name to be displayed for this menu link
+#   pageRef = The identifier of the page or section to link to
+#
+# By default the menu is ordered alphabetically. This can be
+# overridden by providing a weight value. The menu will then be
+# ordered by weight from lowest to highest.
+
+[[main]]
+  name = "Aides mémoires"
+  pageRef = "aides_memoires"
+  weight = 1
+
+[[main]]
+  name = "Categories"
+  weight = 2
+
+[[main]]
+  name = "Mémo"
+  parent = "Categories"
+  pageRef = "categories/mémo"
+  weight = 1
+
+[[main]]
+  name = "Tuto"
+  parent = "Categories"
+  pageRef = "categories/tuto"
+  weight = 2
+
+[[main]]
+  name = "Tags"
+  weight = 3
+
+[[main]]
+  name = "Linux"
+  parent = "Tags"
+  pageRef = "tags/linux"
+  weight = 1
+
+[[main]]
+  name = "Windows"
+  parent = "Tags"
+  pageRef = "tags/windows"
+  weight = 2
+
+[[main]]
+  name = "Site Web"
+  parent = "Tags"
+  pageRef = "tags/site-web"
+  weight = 3
+
+[[main]]
+  name = "Tous les tags"
+  parent = "Tags"
+  pageRef = "tags"
+  weight = 4
+
+# -- Footer Menu --
+# The footer menu is displayed at the bottom of the page, just before
+# the copyright notice. Configure as per the main menu above.
+
+[[footer]]
+  name = "Aides mémoires"
+  pageRef = "aides_memoires"
+  weight = 10
+
+[[footer]]
+  name = "Tags"
+  pageRef = "tags"
+  weight = 20
+
+[[footer]]
+  name = "Mémos"
+  pageRef = "categories/mémo"
+  weight = 30
+
+[[footer]]
+  name = "Tutos"
+  pageRef = "categories/tuto"
+  weight = 40
