@@ -226,12 +226,6 @@ draft: "false"
 
 Les `categories` et `tags` sont différenciés par la possiblité de n'afficher que les catégories ou d'afficher les catégories et les tags sur les pages.
 
-### Modification des templates
-
-Il est possible de créer ses propres templates de page ou ses propres fichiers css.  
-Pour ce faire, il faut copier l'arborescence du fichier du thème que vous voulez changer.  
-Si le fichier que vous voulez modifier la partie principale des articles recents qui est dans `themes\blowfish\layouts\partials\recent-articles\main.html`, il faut alors créer le fichier `layouts\partials\recent-articles\main.html` et y mettre le code qui correspond à ce que vous voulez pour cette partie du site.
-
 ### Personnalisation des menus
 
 Il est également possible de personnaliser le header et le footer du site.

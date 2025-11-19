@@ -221,7 +221,7 @@
     "keywords": ["hugo","blowfish","markdown","site web"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1531"
+    "wordCount": "1456"
   }]
   </script>
 
@@ -955,7 +955,6 @@
       <ul>
         <li><a href="#organisation-des-pages">Organisation des pages</a></li>
         <li><a href="#nouvelles-pages">Nouvelles pages</a></li>
-        <li><a href="#modification-des-templates">Modification des templates</a></li>
         <li><a href="#personnalisation-des-menus">Personnalisation des menus</a></li>
         <li><a href="#tester-le-site">Tester le site</a></li>
       </ul>
@@ -998,7 +997,6 @@
       <ul>
         <li><a href="#organisation-des-pages">Organisation des pages</a></li>
         <li><a href="#nouvelles-pages">Nouvelles pages</a></li>
-        <li><a href="#modification-des-templates">Modification des templates</a></li>
         <li><a href="#personnalisation-des-menus">Personnalisation des menus</a></li>
         <li><a href="#tester-le-site">Tester le site</a></li>
       </ul>
@@ -1282,19 +1280,6 @@ Le fichier <code>content/_index.html</code> correspond à la page <code>domaine.
 </ul>
 <p>Les <code>categories</code> et <code>tags</code> sont différenciés par la possiblité de n&rsquo;afficher que les catégories ou d&rsquo;afficher les catégories et les tags sur les pages.</p>
 
-<h3 class="relative group">Modification des templates
-    <div id="modification-des-templates" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#modification-des-templates" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<p>Il est possible de créer ses propres templates de page ou ses propres fichiers css.<br>
-Pour ce faire, il faut copier l&rsquo;arborescence du fichier du thème que vous voulez changer.<br>
-Si le fichier que vous voulez modifier la partie principale des articles recents qui est dans <code>themes\blowfish\layouts\partials\recent-articles\main.html</code>, il faut alors créer le fichier <code>layouts\partials\recent-articles\main.html</code> et y mettre le code qui correspond à ce que vous voulez pour cette partie du site.</p>
-
 <h3 class="relative group">Personnalisation des menus
     <div id="personnalisation-des-menus" class="anchor"></div>
     
@@ -1421,6 +1406,15 @@ Si le fichier que vous voulez modifier la partie principale des articles recents
       <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
       <div class="flex justify-between pt-3">
         <span class="flex flex-col">
+          
+            <a
+              class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/aides_memoires/cloudflare-pages/">
+              <span class="leading-6">
+                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;Cloudflare pages
+              </span>
+            </a>
+            
           
         </span>
         <span class="flex flex-col items-end">

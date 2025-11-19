@@ -7,7 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 </copyright>
-    <lastBuildDate>Tue, 18 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Cloudflare</title>
+      <link>http://localhost:1313/tags/cloudflare/</link>
+      <pubDate>Wed, 19 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/cloudflare/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>http://localhost:1313/tags/github/</link>
+      <pubDate>Wed, 19 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/github/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Site Web</title>
+      <link>http://localhost:1313/tags/site-web/</link>
+      <pubDate>Wed, 19 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/site-web/</guid>
+      <description></description>
+      
+    </item>
     
     <item>
       <title>Blowfish</title>
@@ -35,26 +65,6 @@
       <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/markdown/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Site Web</title>
-      <link>http://localhost:1313/tags/site-web/</link>
-      <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/site-web/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Cloudflare</title>
-      <link>http://localhost:1313/tags/cloudflare/</link>
-      <pubDate>Mon, 17 Nov 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/cloudflare/</guid>
       <description></description>
       
     </item>
