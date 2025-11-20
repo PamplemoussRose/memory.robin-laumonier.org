@@ -221,7 +221,7 @@
     "keywords": ["linux","shell","ssh","rsa"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "331"
+    "wordCount": "818"
   }]
   </script>
 
@@ -943,6 +943,7 @@
         <li><a href="#générer-les-clés">Générer les clés</a></li>
         <li><a href="#copie-de-la-clé-publique-sur-la-machine-cible">Copie de la clé publique sur la machine cible</a></li>
         <li><a href="#test-de-la-connexion-par-clé">Test de la connexion par clé</a></li>
+        <li><a href="#sécurisation">Sécurisation</a></li>
       </ul>
     </li>
   </ul>
@@ -969,6 +970,7 @@
         <li><a href="#générer-les-clés">Générer les clés</a></li>
         <li><a href="#copie-de-la-clé-publique-sur-la-machine-cible">Copie de la clé publique sur la machine cible</a></li>
         <li><a href="#test-de-la-connexion-par-clé">Test de la connexion par clé</a></li>
+        <li><a href="#sécurisation">Sécurisation</a></li>
       </ul>
     </li>
   </ul>
@@ -1032,13 +1034,14 @@ Nous allons utiliser <em>OpenSSH</em> pour ce tutoriel.</p>
 <p>Pour avoir l&rsquo;adresse ip, entrez la commande suivante dans votre machine cible.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ip -br a
 </span></span></code></pre></div><p>Une fois que vous avez l&rsquo;adresse, vous pouvez vous connecter en utilsant la commande suivante sur votre machine source.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ssh ssh nom_utilisateur@adresse_ip
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ssh nom_utilisateur@adresse_ip
 </span></span></code></pre></div><ul>
 <li><code>nom_utilisateur</code> correspond à la session avec laquelle vosu allez être connecté</li>
 <li><code>adresse_ip</code> est l&rsquo;adresse de la machine cible obtenue avec la commande précédente</li>
 </ul>
 <p>Lors de la première connexion, un message vous demandera de vérifier l&rsquo;authenticité de l&rsquo;hôte en acceptant son empreinte de clé (&ldquo;fingerprint&rdquo;).</p>
 <p>Pour compléter la connexion, vous devez entrer le mot de passe de l&rsquo;utilisateur avec lequel vouv vous connectez et vous aurrez accès à un shell relié à votre machine cible.</p>
+<p>Vous pouvez vous déconnecter en tapant <code>exit</code> dans le terminal.</p>
 <hr>
 
 <h2 class="relative group">Mise en place des clés RSA
@@ -1051,7 +1054,7 @@ Nous allons utiliser <em>OpenSSH</em> pour ce tutoriel.</p>
     
 </h2>
 <p>En suivant les étpes précedentes, vosu avez mis en place une connexion ssh entre deux machines. L&rsquo;étape suivant est de sécuriser la connexion.</p>
-<p>Pour ce faire nosu allons mettre en place une connexion par clé RSA. Lors de la connexion SSH, le serveur ne va plus vosu demander le mot de passe de l&rsquo;utilisateur utilisé pour la connexion mais va plutôt regarder si vosu possédez la clé</p>
+<p>Pour ce faire nosu allons mettre en place une connexion par clé RSA. Lors de la connexion SSH, le serveur ne va plus vous demander le mot de passe de l&rsquo;utilisateur utilisé pour la connexion mais va plutôt regarder si vous possédez la clé privée correspondante à la clé publique qui est enregistrée.</p>
 
 <h3 class="relative group">Générer les clés
     <div id="générer-les-clés" class="anchor"></div>
@@ -1062,6 +1065,18 @@ Nous allons utiliser <em>OpenSSH</em> pour ce tutoriel.</p>
     </span>
     
 </h3>
+<p>La première étape pour sécuriser la connexion est de générer la parie de clé avec la commande suivante</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ssh-keygen -t rsa -b <span class="m">4096</span>
+</span></span></code></pre></div><ul>
+<li><code>ssh-keygen</code> : outil utilisé piur la génération des clés</li>
+<li><code>-t rsa</code> : force l&rsquo;utilisation de l&rsquo;algorithme RSA</li>
+<li><code>-b 4096</code> fixe la taille de la clé à 4096 bits</li>
+</ul>
+<p>Une fois la commande entrée, suivez les instructions à l&rsquo;écran :</p>
+<ul>
+<li><code>Enter file in which to save the key (...)</code> : Entrez l&rsquo;emplacement de sauvegarde de vos clés. Laissez vide pour l&rsquo;emplacement par défaut (C:\Users\VotreNom\.ssh\id_rsa)</li>
+<li><code>Enter passphrase (empty for no passphrase)</code> : Entrez la phrase de passse pour vos clés. Cette phrase vosu sera demandée à chaque utilsiation de la clé. Laissez vide pour ne pas utiliser de phrase de passe.</li>
+</ul>
 
 <h3 class="relative group">Copie de la clé publique sur la machine cible
     <div id="copie-de-la-clé-publique-sur-la-machine-cible" class="anchor"></div>
@@ -1072,6 +1087,29 @@ Nous allons utiliser <em>OpenSSH</em> pour ce tutoriel.</p>
     </span>
     
 </h3>
+<p>Maintenat que les clés sont générées, vosu devez copier la clé publique sur le serveur SSH.</p>
+<p>Vous pouvez affciher votre clé publique avec la commande suivante (le chemin est à adapter selon votre arborescence)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cat ~/.ssh/id_rsa.pub
+</span></span></code></pre></div><p>La clé est une longue chaine de caractères commençant par <code>ssh-rsa</code>.</p>
+<p>Une fois la clé affichée, vous pouvez la copier et vous connecter sur votre machine serveur en utilisant le mot de passe de l&rsquo;utlisateur</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ssh nom_utilisateur@adresse_ip
+</span></span></code></pre></div><p>Une fois connecté, vosu devez ajouter votre clé publique sur le serveur ssh (remplacez la partie <code>public_key</code> par votre clé publique copiée précédament)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir -p ~/.ssh <span class="o">&amp;&amp;</span> chmod <span class="m">700</span> ~/.ssh <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;public_key&#34;</span> &gt;&gt; ~/.ssh/authorized_keys <span class="o">&amp;&amp;</span> chmod <span class="m">600</span> ~/.ssh/authorized_keys
+</span></span></code></pre></div><ul>
+<li>
+<p><code>mkdir -p ~/.ssh</code> : Crée le répertoire ~/.ssh s’il n’existe pas.</p>
+</li>
+<li>
+<p><code>chmod 700 ~/.ssh</code> : Restreint l’accès au répertoire. Seul l’utilisateur peut lire, écrire, exécuter.</p>
+</li>
+<li>
+<p><code>echo &quot;COPIEZ_VOTRE_CLÉ_PUBLIQUE_ICI&quot; &gt;&gt; ~/.ssh/authorized_keys</code> : Ajoute la clé publique au fichier authorized_keys en l’insérant à la fin.</p>
+</li>
+<li>
+<p><code>chmod 600 ~/.ssh/authorized_keys</code> : Limite l’accès au fichier aux seules lectures/écritures de l’utilisateur.</p>
+</li>
+</ul>
+<p>Vous pouvez maintenant vous déconnecter de la machine cible.</p>
 
 <h3 class="relative group">Test de la connexion par clé
     <div id="test-de-la-connexion-par-clé" class="anchor"></div>
@@ -1082,6 +1120,28 @@ Nous allons utiliser <em>OpenSSH</em> pour ce tutoriel.</p>
     </span>
     
 </h3>
+<p>Pour tester la bonne mis en place des clés RSA, vous pouvez vous connecter comme précédament et cette fois il vous sera demander la phrase de passe que vosu avez définit lors de la génération des clés pour valider votre connexion SSH.</p>
+
+<h3 class="relative group">Sécurisation
+    <div id="sécurisation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#s%c3%a9curisation" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Une fosi que vous êtes sur que la connexion avec clés RSA fonctionne, vous pouvez désactiver la connexion par mot de passe.<br>
+Cette démarche assur que seul les appareil ayant une clé RSA reconnue peuvent se connecter à la machine cible.</p>
+<p>Pour ce faire, connectez-vous à la machine puis éditez le fichier de configuration du serveur SSH</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo nano /etc/ssh/sshd_config
+</span></span></code></pre></div><p>Dans ce fichier cherchez les lignes <code>PasswordAuthentication</code> et <code>PubkeyAuthentication</code> puis modifiez leur valeur par réspéctivment <code>no</code> et <code>yes</code>.</p>
+<p>Au final vous devez avoir quelque chose comme ca</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">PasswordAuthentication no
+</span></span><span class="line"><span class="cl">PubkeyAuthentication yes
+</span></span></code></pre></div><p>Une fois le fichier enregistré, vous pouvez relancer le serveur SSH pour appliquer les changements.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo systemctl restart ssh
+</span></span></code></pre></div><p>Votre serveur n&rsquo;accepte maintenant que les connexion d&rsquo;appareil ayant une clé correspondante à l&rsquo;une de celles enregistrées.</p>
 <hr>
 
           
