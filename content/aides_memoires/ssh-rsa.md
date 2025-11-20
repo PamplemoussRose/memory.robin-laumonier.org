@@ -17,7 +17,3 @@ draft: "false" # Set to true if this page is not to be show
 ## Mise en place des clés RSA
 
 ---
-
-## Connexion hors du réseau local
-
----

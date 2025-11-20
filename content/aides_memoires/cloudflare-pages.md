@@ -1,6 +1,6 @@
 ---
 title: "Cloudflare pages"
-summary: "Tuto pour déployer un site web via les pages Cloudflare."
+summary: "Tutoriel pour déployer un site web via les pages Cloudflare."
 date: "2025-11-19"
 categories: ["tuto"]
 tags: ["site web", "cloudflare", "github"]
@@ -12,7 +12,7 @@ draft: "false" # Set to true if this page is not to be show
 
 ## Prérequis
 
-Ce tuto permet de mettre en place un site web à l'aide des pages Cloudflare.  
+Ce tutoriel permet de mettre en place un site web à l'aide des pages Cloudflare.  
 Je vais utilisé un site généré par le framework Hugo ([**Voir tuto ici**](https://memory.robin-laumonier.org/aides_memoires/hugo/)). Certaines étapes vont être spécifiques à Hugo et seront à adapter selon votre téchnologies.
 
 Pour ce tuto vous devez remplir les conditions suivantes :
