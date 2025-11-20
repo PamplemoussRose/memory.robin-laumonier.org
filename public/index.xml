@@ -11,101 +11,101 @@
     
     <item>
       <title>Modèle OSI</title>
-      <link>http://localhost:1313/aides_memoires/modele-osi/</link>
+      <link>http://localhost:1313/aides-memoires/modele-osi/</link>
       <pubDate>Thu, 20 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/modele-osi/</guid>
+      <guid>http://localhost:1313/aides-memoires/modele-osi/</guid>
       <description>Explication des couches du modèle OSI.</description>
       
     </item>
     
     <item>
-      <title>Cloudflare pages</title>
-      <link>http://localhost:1313/aides_memoires/cloudflare-pages/</link>
+      <title>Cloudflare Pages</title>
+      <link>http://localhost:1313/aides-memoires/cloudflare-pages/</link>
       <pubDate>Wed, 19 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/cloudflare-pages/</guid>
-      <description>Tutoriel pour déployer un site web via les pages Cloudflare.</description>
+      <guid>http://localhost:1313/aides-memoires/cloudflare-pages/</guid>
+      <description>Tutoriel pour déployer un site web via les Pages Cloudflare.</description>
       
     </item>
     
     <item>
-      <title>Tuto Hugo avec Blowfish</title>
-      <link>http://localhost:1313/aides_memoires/hugo/</link>
+      <title>Tutoriel Hugo avec Blowfish</title>
+      <link>http://localhost:1313/aides-memoires/hugo/</link>
       <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/hugo/</guid>
+      <guid>http://localhost:1313/aides-memoires/hugo/</guid>
       <description>Tutoriel d&amp;rsquo;installation et de configuration pour créer un site avec Hugo.</description>
       
     </item>
     
     <item>
-      <title>DNS Dynamique</title>
-      <link>http://localhost:1313/aides_memoires/dyndns/</link>
+      <title>DNS dynamique</title>
+      <link>http://localhost:1313/aides-memoires/dyndns/</link>
       <pubDate>Mon, 17 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/dyndns/</guid>
+      <guid>http://localhost:1313/aides-memoires/dyndns/</guid>
       <description>Tutoriel pour mettre en place un DNS dynamique vers un site web à l&amp;rsquo;aide de Cloudflare.</description>
       
     </item>
     
     <item>
       <title>Serveur web auto-hébergé</title>
-      <link>http://localhost:1313/aides_memoires/serveur-nginx/</link>
+      <link>http://localhost:1313/aides-memoires/serveur-nginx/</link>
       <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/serveur-nginx/</guid>
+      <guid>http://localhost:1313/aides-memoires/serveur-nginx/</guid>
       <description>Tutoriel pour mettre en place un serveur web auto-hébergé avec Nginx sur une machine linux.</description>
       
     </item>
     
     <item>
-      <title>Mise en place UFW</title>
-      <link>http://localhost:1313/aides_memoires/firewall/</link>
+      <title>Mise en place d&#39;UFW</title>
+      <link>http://localhost:1313/aides-memoires/firewall/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/firewall/</guid>
+      <guid>http://localhost:1313/aides-memoires/firewall/</guid>
       <description>Tutoriel pour mettre en place Uncomplicated FireWall.</description>
       
     </item>
     
     <item>
       <title>Connexion RDP</title>
-      <link>http://localhost:1313/aides_memoires/rdp/</link>
+      <link>http://localhost:1313/aides-memoires/rdp/</link>
       <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/rdp/</guid>
+      <guid>http://localhost:1313/aides-memoires/rdp/</guid>
       <description>Tutoriel pour mettre en place une connexion RDP vers un appareil.</description>
       
     </item>
     
     <item>
       <title>Connexion SSH avec clés RSA</title>
-      <link>http://localhost:1313/aides_memoires/ssh-rsa/</link>
+      <link>http://localhost:1313/aides-memoires/ssh-rsa/</link>
       <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/ssh-rsa/</guid>
+      <guid>http://localhost:1313/aides-memoires/ssh-rsa/</guid>
       <description>Tutoriel pour mettre en place une connexion SSH sécurisée par clés RSA vers un appareil.</description>
       
     </item>
     
     <item>
       <title>Commandes cmd basiques</title>
-      <link>http://localhost:1313/aides_memoires/cmd-basic/</link>
+      <link>http://localhost:1313/aides-memoires/cmd-basic/</link>
       <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/cmd-basic/</guid>
+      <guid>http://localhost:1313/aides-memoires/cmd-basic/</guid>
       <description>Toutes les commandes de base pour utiliser le cmd Microsoft.</description>
       
     </item>
     
     <item>
       <title>Commandes Shell basiques</title>
-      <link>http://localhost:1313/aides_memoires/shell-basics/</link>
+      <link>http://localhost:1313/aides-memoires/shell-basics/</link>
       <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/shell-basics/</guid>
-      <description>Toutes les commandes de base pour utiliser le shell linux.</description>
+      <guid>http://localhost:1313/aides-memoires/shell-basics/</guid>
+      <description>Toutes les commandes de base pour utiliser le shell Linux.</description>
       
     </item>
     

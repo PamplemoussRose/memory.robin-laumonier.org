@@ -11,31 +11,31 @@
     
     <item>
       <title>Modèle OSI</title>
-      <link>http://localhost:1313/aides_memoires/modele-osi/</link>
+      <link>http://localhost:1313/aides-memoires/modele-osi/</link>
       <pubDate>Thu, 20 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/modele-osi/</guid>
+      <guid>http://localhost:1313/aides-memoires/modele-osi/</guid>
       <description>Explication des couches du modèle OSI.</description>
       
     </item>
     
     <item>
       <title>Commandes cmd basiques</title>
-      <link>http://localhost:1313/aides_memoires/cmd-basic/</link>
+      <link>http://localhost:1313/aides-memoires/cmd-basic/</link>
       <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/cmd-basic/</guid>
+      <guid>http://localhost:1313/aides-memoires/cmd-basic/</guid>
       <description>Toutes les commandes de base pour utiliser le cmd Microsoft.</description>
       
     </item>
     
     <item>
       <title>Commandes Shell basiques</title>
-      <link>http://localhost:1313/aides_memoires/shell-basics/</link>
+      <link>http://localhost:1313/aides-memoires/shell-basics/</link>
       <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/shell-basics/</guid>
-      <description>Toutes les commandes de base pour utiliser le shell linux.</description>
+      <guid>http://localhost:1313/aides-memoires/shell-basics/</guid>
+      <description>Toutes les commandes de base pour utiliser le shell Linux.</description>
       
     </item>
     

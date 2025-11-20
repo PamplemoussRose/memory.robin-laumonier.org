@@ -11,10 +11,10 @@
     
     <item>
       <title>Connexion RDP</title>
-      <link>http://localhost:1313/aides_memoires/rdp/</link>
+      <link>http://localhost:1313/aides-memoires/rdp/</link>
       <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/rdp/</guid>
+      <guid>http://localhost:1313/aides-memoires/rdp/</guid>
       <description>Tutoriel pour mettre en place une connexion RDP vers un appareil.</description>
       
     </item>

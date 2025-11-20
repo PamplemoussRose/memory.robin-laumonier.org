@@ -11,10 +11,10 @@
     
     <item>
       <title>Serveur web auto-hébergé</title>
-      <link>http://localhost:1313/aides_memoires/serveur-nginx/</link>
+      <link>http://localhost:1313/aides-memoires/serveur-nginx/</link>
       <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/serveur-nginx/</guid>
+      <guid>http://localhost:1313/aides-memoires/serveur-nginx/</guid>
       <description>Tutoriel pour mettre en place un serveur web auto-hébergé avec Nginx sur une machine linux.</description>
       
     </item>

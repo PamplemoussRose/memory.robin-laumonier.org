@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>http://localhost:1313/aides_memoires/</loc>
+    <loc>http://localhost:1313/aides-memoires/</loc>
     <lastmod>2025-11-20T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -15,61 +15,61 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/aides_memoires/modele-osi/</loc>
+    <loc>http://localhost:1313/aides-memoires/modele-osi/</loc>
     <lastmod>2025-11-20T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/aides_memoires/cloudflare-pages/</loc>
+    <loc>http://localhost:1313/aides-memoires/cloudflare-pages/</loc>
     <lastmod>2025-11-19T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/aides_memoires/hugo/</loc>
+    <loc>http://localhost:1313/aides-memoires/hugo/</loc>
     <lastmod>2025-11-18T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/aides_memoires/dyndns/</loc>
+    <loc>http://localhost:1313/aides-memoires/dyndns/</loc>
     <lastmod>2025-11-17T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/aides_memoires/serveur-nginx/</loc>
+    <loc>http://localhost:1313/aides-memoires/serveur-nginx/</loc>
     <lastmod>2025-11-16T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/aides_memoires/firewall/</loc>
+    <loc>http://localhost:1313/aides-memoires/firewall/</loc>
     <lastmod>2025-10-20T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/aides_memoires/rdp/</loc>
+    <loc>http://localhost:1313/aides-memoires/rdp/</loc>
     <lastmod>2025-10-19T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/aides_memoires/ssh-rsa/</loc>
+    <loc>http://localhost:1313/aides-memoires/ssh-rsa/</loc>
     <lastmod>2025-10-18T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/aides_memoires/cmd-basic/</loc>
+    <loc>http://localhost:1313/aides-memoires/cmd-basic/</loc>
     <lastmod>2025-10-09T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/aides_memoires/shell-basics/</loc>
+    <loc>http://localhost:1313/aides-memoires/shell-basics/</loc>
     <lastmod>2025-10-08T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>

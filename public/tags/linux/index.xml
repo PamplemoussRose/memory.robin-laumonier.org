@@ -11,41 +11,41 @@
     
     <item>
       <title>Serveur web auto-hébergé</title>
-      <link>http://localhost:1313/aides_memoires/serveur-nginx/</link>
+      <link>http://localhost:1313/aides-memoires/serveur-nginx/</link>
       <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/serveur-nginx/</guid>
+      <guid>http://localhost:1313/aides-memoires/serveur-nginx/</guid>
       <description>Tutoriel pour mettre en place un serveur web auto-hébergé avec Nginx sur une machine linux.</description>
       
     </item>
     
     <item>
-      <title>Mise en place UFW</title>
-      <link>http://localhost:1313/aides_memoires/firewall/</link>
+      <title>Mise en place d&#39;UFW</title>
+      <link>http://localhost:1313/aides-memoires/firewall/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/firewall/</guid>
+      <guid>http://localhost:1313/aides-memoires/firewall/</guid>
       <description>Tutoriel pour mettre en place Uncomplicated FireWall.</description>
       
     </item>
     
     <item>
       <title>Connexion SSH avec clés RSA</title>
-      <link>http://localhost:1313/aides_memoires/ssh-rsa/</link>
+      <link>http://localhost:1313/aides-memoires/ssh-rsa/</link>
       <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/ssh-rsa/</guid>
+      <guid>http://localhost:1313/aides-memoires/ssh-rsa/</guid>
       <description>Tutoriel pour mettre en place une connexion SSH sécurisée par clés RSA vers un appareil.</description>
       
     </item>
     
     <item>
       <title>Commandes Shell basiques</title>
-      <link>http://localhost:1313/aides_memoires/shell-basics/</link>
+      <link>http://localhost:1313/aides-memoires/shell-basics/</link>
       <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/shell-basics/</guid>
-      <description>Toutes les commandes de base pour utiliser le shell linux.</description>
+      <guid>http://localhost:1313/aides-memoires/shell-basics/</guid>
+      <description>Toutes les commandes de base pour utiliser le shell Linux.</description>
       
     </item>
     

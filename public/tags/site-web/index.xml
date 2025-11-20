@@ -10,41 +10,41 @@
     <lastBuildDate>Wed, 19 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/site-web/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Cloudflare pages</title>
-      <link>http://localhost:1313/aides_memoires/cloudflare-pages/</link>
+      <title>Cloudflare Pages</title>
+      <link>http://localhost:1313/aides-memoires/cloudflare-pages/</link>
       <pubDate>Wed, 19 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/cloudflare-pages/</guid>
-      <description>Tutoriel pour déployer un site web via les pages Cloudflare.</description>
+      <guid>http://localhost:1313/aides-memoires/cloudflare-pages/</guid>
+      <description>Tutoriel pour déployer un site web via les Pages Cloudflare.</description>
       
     </item>
     
     <item>
-      <title>Tuto Hugo avec Blowfish</title>
-      <link>http://localhost:1313/aides_memoires/hugo/</link>
+      <title>Tutoriel Hugo avec Blowfish</title>
+      <link>http://localhost:1313/aides-memoires/hugo/</link>
       <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/hugo/</guid>
+      <guid>http://localhost:1313/aides-memoires/hugo/</guid>
       <description>Tutoriel d&amp;rsquo;installation et de configuration pour créer un site avec Hugo.</description>
       
     </item>
     
     <item>
-      <title>DNS Dynamique</title>
-      <link>http://localhost:1313/aides_memoires/dyndns/</link>
+      <title>DNS dynamique</title>
+      <link>http://localhost:1313/aides-memoires/dyndns/</link>
       <pubDate>Mon, 17 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/dyndns/</guid>
+      <guid>http://localhost:1313/aides-memoires/dyndns/</guid>
       <description>Tutoriel pour mettre en place un DNS dynamique vers un site web à l&amp;rsquo;aide de Cloudflare.</description>
       
     </item>
     
     <item>
       <title>Serveur web auto-hébergé</title>
-      <link>http://localhost:1313/aides_memoires/serveur-nginx/</link>
+      <link>http://localhost:1313/aides-memoires/serveur-nginx/</link>
       <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/serveur-nginx/</guid>
+      <guid>http://localhost:1313/aides-memoires/serveur-nginx/</guid>
       <description>Tutoriel pour mettre en place un serveur web auto-hébergé avec Nginx sur une machine linux.</description>
       
     </item>

@@ -10,11 +10,11 @@
     <lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/firewall/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Mise en place UFW</title>
-      <link>http://localhost:1313/aides_memoires/firewall/</link>
+      <title>Mise en place d&#39;UFW</title>
+      <link>http://localhost:1313/aides-memoires/firewall/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/aides_memoires/firewall/</guid>
+      <guid>http://localhost:1313/aides-memoires/firewall/</guid>
       <description>Tutoriel pour mettre en place Uncomplicated FireWall.</description>
       
     </item>

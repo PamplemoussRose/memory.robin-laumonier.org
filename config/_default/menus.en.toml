@@ -11,8 +11,8 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
-  name = "Aides mémoires"
-  pageRef = "aides_memoires"
+  name = "Aides-mémoires"
+  pageRef = "aides-memoires"
   weight = 1
 
 [[main]]
@@ -64,8 +64,8 @@
 # the copyright notice. Configure as per the main menu above.
 
 [[footer]]
-  name = "Aides mémoires"
-  pageRef = "aides_memoires"
+  name = "Aides-mémoires"
+  pageRef = "aides-memoires"
   weight = 10
 
 [[footer]]
