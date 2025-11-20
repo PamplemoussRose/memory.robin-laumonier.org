@@ -30,13 +30,13 @@ Acune installation nécessaire. Tout le nécessaire est déjà installé.
 
 La version famille ne supportant pas la connexion rdp, nous allons utiliser un logiciel tierce, *TeamViewer*.
 
-1. Téléchargez et installez l'application *TeamViewer* (<https://www.teamviewer.com/fr/download/windows/>) sur vos deux appareils
+1. Téléchargez et installez l'application *TeamViewer* (**<https://www.teamviewer.com/fr/download/windows/>**) sur vos deux appareils
 2. Créez un compte ci ce n'est pas déjà fait et connectez vous une fois l'application lancée
 3. Dans l'onglet *Téléassistance*, cochez la case *Autoriser Grant Access sur cet appareil*
 
 ### Windows Famille - Connexion
 
-1. Démarez *Teamviewer*
+1. Démarez *TeamViewer*
 2. Allez dans l'onglet Appareils
 3. Séléctionnez et connectez-vous à l'apprareil que vous désirez
 

@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 </copyright>
-    <lastBuildDate>Thu, 09 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/m%C3%A9mo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/m%C3%A9mo/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Modèle OSI</title>
+      <link>http://localhost:1313/aides_memoires/modele-osi/</link>
+      <pubDate>Thu, 20 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/aides_memoires/modele-osi/</guid>
+      <description>Explication des couches du modèle OSI.</description>
+      
+    </item>
     
     <item>
       <title>Commandes cmd basiques</title>

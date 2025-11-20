@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Coommunication on Memory</title>
+    <link>http://localhost:1313/tags/coommunication/</link>
+    <description>Recent content in Coommunication on Memory</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 </copyright>
+    <lastBuildDate>Thu, 20 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/coommunication/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Modèle OSI</title>
+      <link>http://localhost:1313/aides_memoires/modele-osi/</link>
+      <pubDate>Thu, 20 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/aides_memoires/modele-osi/</guid>
+      <description>Explication des couches du modèle OSI.</description>
+      
+    </item>
+    
+  </channel>
+</rss>
