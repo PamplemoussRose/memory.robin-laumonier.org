@@ -310,7 +310,7 @@
   
   class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
   aria-label="Aides-mémoires"
-  title="Aides mémoires">
+  title="Aides-mémoires">
   
   
     <p class="text-base font-medium">
@@ -574,7 +574,7 @@
     
     class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
     aria-label="Aides-mémoires"
-    title="Aides mémoires">
+    title="Aides-mémoires">
     
     
       <p class="text-bg font-bg">
@@ -1122,12 +1122,12 @@ Si vous prévoyez de lier un thème, il faut vérifier que Git est bien install�
 <li>Décommenter la ligne <code>theme = &quot;blowfish&quot;</code> dans le fichier <code>hugo.toml</code></li>
 </ul>
 <p>Une fois ces étapes réalisées, votre dossier <code>config/_default</code> doit ressembler à ça :</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">config/_default/
-</span></span><span class="line"><span class="cl">├─ hugo.toml               <span class="c1"># Configuration du site</span>
-</span></span><span class="line"><span class="cl">├─ languages.en.toml       <span class="c1"># Paramètres de la langue et de l&#39;auteur</span>
-</span></span><span class="line"><span class="cl">├─ markup.toml             <span class="c1"># Paramètres pour que le thème fonctionne</span>
-</span></span><span class="line"><span class="cl">├─ menus.en.toml           <span class="c1"># Personnalisation du header et du footer</span>
-</span></span><span class="line"><span class="cl">├─ params.toml             <span class="c1"># Personnalisation des éléments du site</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">config/_default/
+</span></span><span class="line"><span class="cl">├─ hugo.toml               # Configuration du site
+</span></span><span class="line"><span class="cl">├─ languages.en.toml       # Paramètres de la langue et de l&#39;auteur
+</span></span><span class="line"><span class="cl">├─ markup.toml             # Paramètres pour que le thème fonctionne
+</span></span><span class="line"><span class="cl">├─ menus.en.toml           # Personnalisation du header et du footer
+</span></span><span class="line"><span class="cl">├─ params.toml             # Personnalisation des éléments du site
 </span></span><span class="line"><span class="cl">└─ module.toml
 </span></span></code></pre></div><p>Et le fichier <code>hugo.toml</code> doit commencer par les lignes suivantes :</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># -- Site Configuration --</span>
@@ -1239,7 +1239,7 @@ Pour plus d&rsquo;informations sur les palettes de couleurs, visitez <a
 </h3>
 <p>Les pages que vous voulez ajouter doivent toutes être dans le dossier <code>content</code>. Cependant, il n&rsquo;y a pas d&rsquo;organisation spécifique donc l&rsquo;architecture de votre site dépend de vous.</p>
 <p>Une architecture peut être la suivante :</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">content
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">content
 </span></span><span class="line"><span class="cl">├── _index.md
 </span></span><span class="line"><span class="cl">├── about.md
 </span></span><span class="line"><span class="cl">├── posts
@@ -1479,7 +1479,7 @@ Le fichier <code>content/_index.html</code> correspond à la page <code>domaine.
               <a
                 class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center"
                 href="/aides-memoires/"
-                title="Aides mémoires">
+                title="Aides-mémoires">
                 
                 Aides-mémoires
               </a>

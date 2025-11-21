@@ -221,7 +221,7 @@
     "keywords": ["linux","shell","firewall","ufw"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "10"
+    "wordCount": "296"
   }]
   </script>
 
@@ -310,7 +310,7 @@
   
   class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
   aria-label="Aides-mémoires"
-  title="Aides mémoires">
+  title="Aides-mémoires">
   
   
     <p class="text-base font-medium">
@@ -574,7 +574,7 @@
     
     class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
     aria-label="Aides-mémoires"
-    title="Aides mémoires">
+    title="Aides-mémoires">
     
     
       <p class="text-bg font-bg">
@@ -979,7 +979,12 @@
     </span>
     
 </h2>
-<hr>
+<p>Pour unstaller le par feu Uncomplicate FireWall, il suffit d&rsquo;éxecuter les commandes suivantes :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt update        <span class="c1"># Met à jour le gestinnaire de packet</span>
+</span></span><span class="line"><span class="cl">sudo apt install ufw   <span class="c1"># Installe ufw</span>
+</span></span><span class="line"><span class="cl">sudo ufw <span class="nb">enable</span>        <span class="c1"># Ajoute ufw aux démarrages automatiques</span>
+</span></span><span class="line"><span class="cl">sudo ufw status        <span class="c1"># Affiche le statut de ufw</span>
+</span></span></code></pre></div><hr>
 
 <h2 class="relative group">Configuration
     <div id="configuration" class="anchor"></div>
@@ -990,7 +995,28 @@
     </span>
     
 </h2>
-<hr>
+<p>Par défaut, quand le par feu est activé, tous les ports sont fermés.<br>
+Il est cependant possible d&rsquo;ouvrir des ports pour autoriser les requêtes à passer par ce port.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo ufw allow <span class="o">[</span>ARG<span class="o">]</span>
+</span></span></code></pre></div><p><code>[ARG]</code> est à remplacer par le port à ouvrir sur le par feu.</p>
+<p>Si vous voulez fermer un port ouvert, entrez la commande suivante en spécifant le port à fermer :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo ufw delete allow <span class="o">[</span>ARG<span class="o">]</span>
+</span></span></code></pre></div><p>Pour afficher le status et la configuration du par feu, vous pouvez utiliser la commande suivante</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo ufw status verbose
+</span></span></code></pre></div><p>L&rsquo;ajout du mot <code>verbose</code> permet d&rsquo;avoir plus de détails sur la configuration.</p>
+<p>Une configuration pour un par feu ayant les ports HTTP et HTTPS ouverts pour les adresses IPv4 et IPv6 ressemble à ça</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">Status: active
+</span></span><span class="line"><span class="cl">Logging: on (low)
+</span></span><span class="line"><span class="cl">Default: deny (incoming), allow (outgoing), deny (routed)
+</span></span><span class="line"><span class="cl">New profiles: skip
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">To                         Action      From
+</span></span><span class="line"><span class="cl">--                         ------      ----
+</span></span><span class="line"><span class="cl">80/tcp                     ALLOW IN    Anywhere
+</span></span><span class="line"><span class="cl">443/tcp                    ALLOW IN    Anywhere
+</span></span><span class="line"><span class="cl">80/tcp (v6)                ALLOW IN    Anywhere (v6)
+</span></span><span class="line"><span class="cl">443/tcp (v6)               ALLOW IN    Anywhere (v6)
+</span></span></code></pre></div><hr>
 
 <h2 class="relative group">Exemples de port courrants
     <div id="exemples-de-port-courrants" class="anchor"></div>
@@ -1001,6 +1027,23 @@
     </span>
     
 </h2>
+<p>Voici une liste non exaustive de ports courant avec le protocol utilisés :</p>
+<ul>
+<li>20, 21 (TCP): FTP</li>
+<li>22 (TCP) : SSH</li>
+<li>25 (TCP) : SMTP</li>
+<li>80 (TCP): HTTP</li>
+<li>389 (TCP/UDP) : LDAP</li>
+<li>443 (TCP) : HTTPS</li>
+<li>465, 587 (TCP): SMTP sécurisé</li>
+<li>636 (TCP) : LDAPS</li>
+<li>1433 (TCP) : Microsoft SQL Server</li>
+<li>1521 (TCP) : Oracle Database</li>
+<li>3306 (TCP) : MySQL/MariaDB</li>
+<li>3389 (TCP) : RDP</li>
+<li>5432 (TCP) : PostgreSQL</li>
+<li>27017 (TCP) : MongoDB</li>
+</ul>
 <hr>
 
           
@@ -1121,7 +1164,7 @@
               <a
                 class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center"
                 href="/aides-memoires/"
-                title="Aides mémoires">
+                title="Aides-mémoires">
                 
                 Aides-mémoires
               </a>

@@ -7,3 +7,13 @@ tags: ["dns", "cloudflare", "serveur web", "site web"]
 layout: "page"
 draft: "false" # Set to true if this page is not to be shown
 ---
+
+---
+
+## Prérequis
+
+---
+
+## Enregistrements DNS
+
+---

@@ -95,7 +95,7 @@ Pour terminer l'installation de Blowfish, il faut :
 
 Une fois ces étapes réalisées, votre dossier `config/_default` doit ressembler à ça :
 
-``` sh
+```txt
 config/_default/
 ├─ hugo.toml               # Configuration du site
 ├─ languages.en.toml       # Paramètres de la langue et de l'auteur
@@ -186,7 +186,7 @@ Les pages que vous voulez ajouter doivent toutes être dans le dossier `content`
 
 Une architecture peut être la suivante :
 
-```sh
+```txt
 content
 ├── _index.md
 ├── about.md
