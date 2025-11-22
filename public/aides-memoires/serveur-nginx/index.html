@@ -222,7 +222,7 @@
     "keywords": ["linux","shell","nginx","serveur web","site web"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "10"
+    "wordCount": "773"
   }]
   </script>
 
@@ -945,6 +945,14 @@
   <ul>
     <li><a href="#installation-de-nginx">Installation de Nginx</a></li>
     <li><a href="#mise-en-place-dun-site">Mise en place d&rsquo;un site</a></li>
+    <li><a href="#activation-de-la-connexion-https">Activation de la connexion HTTPS</a>
+      <ul>
+        <li><a href="#mode-ssltls">Mode SSL/TLS</a></li>
+        <li><a href="#installation-de-certbot">Installation de certbot</a></li>
+        <li><a href="#génération-du-certificat">Génération du certificat</a></li>
+        <li><a href="#renouvellement-de-certificat">Renouvellement de certificat</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -960,6 +968,14 @@
   <ul>
     <li><a href="#installation-de-nginx">Installation de Nginx</a></li>
     <li><a href="#mise-en-place-dun-site">Mise en place d&rsquo;un site</a></li>
+    <li><a href="#activation-de-la-connexion-https">Activation de la connexion HTTPS</a>
+      <ul>
+        <li><a href="#mode-ssltls">Mode SSL/TLS</a></li>
+        <li><a href="#installation-de-certbot">Installation de certbot</a></li>
+        <li><a href="#génération-du-certificat">Génération du certificat</a></li>
+        <li><a href="#renouvellement-de-certificat">Renouvellement de certificat</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -988,7 +1004,12 @@
     </span>
     
 </h2>
-<hr>
+<p>Pour installer Nginx, il suffit d&rsquo;exécuter les commandes suivantes :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt update                 <span class="c1"># Met à jour le gestionnaire apt</span>
+</span></span><span class="line"><span class="cl">sudo apt install nginx curl -y  <span class="c1"># Installe nginx</span>
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> nginx     <span class="c1"># Ajoute nginx au démarrage automatique</span>
+</span></span><span class="line"><span class="cl">sudo systemctl start nginx      <span class="c1"># Lance nginx</span>
+</span></span></code></pre></div><hr>
 
 <h2 class="relative group">Mise en place d&rsquo;un site
     <div id="mise-en-place-dun-site" class="anchor"></div>
@@ -999,7 +1020,176 @@
     </span>
     
 </h2>
+<p>Une fois que Nginx est installé, nous pouvons commencer la configuration du site.</p>
+
+  
+
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900"
+  
+  >
+  <span
+    
+      class="text-primary-400 pe-3 flex items-center"
+    
+    >
+    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span>
+  </span>
+
+  <span
+    
+      class="dark:text-neutral-300"
+    
+    >Dans les commandes suivantes, le site est nommé <em>mon_site_web</em>. Toutes les commandes sont donc à adapter selon le nom de votre site.</span>
+</div>
+
+<p>Tout d&rsquo;abord, nous devons créer le dossier où seront stockés les fichiers du site puis attribuer les bonnes permissions.<br>
+Vous pouvez mettre une page temporaire dans ce dossier ou votre site s&rsquo;il existe déjà.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Crée le répertoire racine du site</span>
+</span></span><span class="line"><span class="cl">sudo mkdir -p /var/www/mon_site_web
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Définit les permissions</span>
+</span></span><span class="line"><span class="cl">sudo chown -R www-data:www-data /var/www/mon_site_web
+</span></span><span class="line"><span class="cl">sudo chmod -R <span class="m">755</span> /var/www/mon_site_web
+</span></span></code></pre></div><p>L&rsquo;utilisateur <code>www-data</code> est celui utilisé par Nginx. C&rsquo;est la raison pour laquelle il est mis comme propriétaire du dossier.</p>
+<p>Nginx gère la disponibilité des sites via deux dossiers :</p>
+<ul>
+<li><code>sites-available</code> : Contient les fichiers de configuration des sites sur le serveur</li>
+<li><code>sites-enabled</code> : Contient des liens symboliques vers les fichiers de configurations. Seuls les sites ayant un lien symboliques sont accessible via le serveur.</li>
+</ul>
+<p>Nous devons donc commencer par créer le fichier de configuration du site.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo nano /etc/nginx/sites-available/mon_site_web
+</span></span></code></pre></div><p>Ce fichier suit le format suivant :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">server {
+</span></span><span class="line"><span class="cl">    # Port d&#39;écoute
+</span></span><span class="line"><span class="cl">    listen 80;        # IPv4
+</span></span><span class="line"><span class="cl">    listen [::]:80;   # IPv6
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    # Nom du site
+</span></span><span class="line"><span class="cl">    server_name mon_site_web;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    # Chemin racine du site
+</span></span><span class="line"><span class="cl">    root /var/www/mon_site_web;
+</span></span><span class="line"><span class="cl">    # Ficher à chercher à la racine
+</span></span><span class="line"><span class="cl">    index index.html;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    # Comportement lors de la réception d&#39;une requête
+</span></span><span class="line"><span class="cl">    location / {
+</span></span><span class="line"><span class="cl">        try_files $uri $uri/ =404;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><p>Une fois que le site est mit comme étant disponible, nous devons l&rsquo;activer en créant un lien symbolique vers le fichier de configuration dans le dossier des sites activés.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Créer un lien symbolique pour activer la configuration</span>
+</span></span><span class="line"><span class="cl">sudo ln -s /etc/nginx/sites-available/mon_site_web /etc/nginx/sites-enabled/
+</span></span></code></pre></div><p>Nginx propose une commande pour vérifier qu&rsquo;il n&rsquo;y a pas d&rsquo;erreurs de syntaxe dans les fichiers de configuration.<br>
+Si le test réussit, vous pouvez redémarrer Nginx pour appliquer les changements.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Tester la configuration</span>
+</span></span><span class="line"><span class="cl">sudo nginx -t
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Redémarrer Nginx</span>
+</span></span><span class="line"><span class="cl">sudo systemctl restart nginx
+</span></span></code></pre></div><p>Votre site est maintenant accessible en HTTP via l&rsquo;adresse IP de votre routeur ou via une URL si vous avez paramétré un DNS.</p>
 <hr>
+
+<h2 class="relative group">Activation de la connexion HTTPS
+    <div id="activation-de-la-connexion-https" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#activation-de-la-connexion-https" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Votre site est accessible mais uniquement en HTTP. Il est recommandé de sécuriser votre serveur en autorisant uniquement les connexions via HTTPS.</p>
+<p>Pour ce faire, nous allons utiliser certbot qui permet la génération et le renouvellement de certificats.</p>
+
+<h3 class="relative group">Mode SSL/TLS
+    <div id="mode-ssltls" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#mode-ssltls" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Avant de commencer avec certbot, il est vivement recommandé de passer le chiffrement SSL/TLS en mode <em>Full (Strict)</em> sur Cloudflare.</p>
+<p>Pour cela, allez dans votre compte Cloudflare, partie SSL/TLS, onglet *Overview, puis cliquez sur <em>Configure</em> pour changer de mode. Ensuite, choisissez <em>Custom SSL/TLS</em> puis sélectionnez <em>Full (Strict)</em>. Vous pouvez maintenant cliquez sur <em>Save</em> et retourner sur votre terminal.</p>
+
+<h3 class="relative group">Installation de certbot
+    <div id="installation-de-certbot" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#installation-de-certbot" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Pour installer certbot, utilisez la commande suivante :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Installer Certbot et le plugin Nginx</span>
+</span></span><span class="line"><span class="cl">sudo apt install certbot python3-certbot-nginx -y
+</span></span></code></pre></div>
+<h3 class="relative group">Génération du certificat
+    <div id="génération-du-certificat" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#g%c3%a9n%c3%a9ration-du-certificat" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Maintenant que certbot est installé, nous pouvons lancer la génération du certificat avec la commande suivante :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo certbot --nginx -d cv.robin-laumonier.org
+</span></span></code></pre></div><p>Une fois la commande lancée, suivez les instructions à l&rsquo;écran. Une des question vous demandera de choisir entre retirer la connexion HTTP ou la rediriger vers la connexion HTTPS. Il est recommandé de rediriger les connexions HTTP vers celles HTTPS.</p>
+<p>Une fois le certificat généré, certbot fait des changements dans le fichier de configuration de votre site. Après modification, il doit avoir le format suivant :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">server {
+</span></span><span class="line"><span class="cl">    # Nom du site
+</span></span><span class="line"><span class="cl">    server_name mon_site_web;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    # Chemin racine du site
+</span></span><span class="line"><span class="cl">    root /var/www/mon_site_web;
+</span></span><span class="line"><span class="cl">    # Ficher à rechercher à la racine
+</span></span><span class="line"><span class="cl">    index index.html;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    # Comportement lors de la réception d&#39;une requête
+</span></span><span class="line"><span class="cl">    location / {
+</span></span><span class="line"><span class="cl">        try_files $uri $uri/ =404;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    listen [::]:443 ssl; # managed by Certbot
+</span></span><span class="line"><span class="cl">    listen 443 ssl; # managed by Certbot
+</span></span><span class="line"><span class="cl">    ssl_certificate /etc/letsencrypt/live/mon_site_web/fullchain.pem; # managed by Certbot
+</span></span><span class="line"><span class="cl">    ssl_certificate_key /etc/letsencrypt/live/mon_site_web/privkey.pem; # managed by Certbot
+</span></span><span class="line"><span class="cl">    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+</span></span><span class="line"><span class="cl">    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">server {
+</span></span><span class="line"><span class="cl">    if ($host = mon_site_web) {
+</span></span><span class="line"><span class="cl">        return 301 https://$host$request_uri;
+</span></span><span class="line"><span class="cl">    } # managed by Certbot
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    listen 80;
+</span></span><span class="line"><span class="cl">    listen [::]:80;
+</span></span><span class="line"><span class="cl">    server_name mon_site_web;
+</span></span><span class="line"><span class="cl">    return 404; # managed by Certbot
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div>
+<h3 class="relative group">Renouvellement de certificat
+    <div id="renouvellement-de-certificat" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#renouvellement-de-certificat" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Les certificats sont valables 90 jours. Cependant, certbot a automatiquement configuré une tâche cron ou un timer <code>systemd</code> pour le renouvellement.</p>
+<p>Vous pouvez tester le processus avec la commande suivante. Si elle réussit, le renouvellement automatique fonctionnera correctement.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo certbot renew --dry-run
+</span></span></code></pre></div><hr>
 
           
           

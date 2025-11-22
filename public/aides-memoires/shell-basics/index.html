@@ -220,7 +220,7 @@
     "keywords": ["linux","shell","commandes"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "511"
+    "wordCount": "535"
   }]
   </script>
 
@@ -936,6 +936,7 @@
     <li><a href="#propriété">Propriété</a></li>
     <li><a href="#emplacement-actuel">Emplacement actuel</a></li>
     <li><a href="#redémarrer">Redémarrer</a></li>
+    <li><a href="#statut-dun-service">Statut d&rsquo;un service</a></li>
   </ul>
 </nav>
   </div>
@@ -964,6 +965,7 @@
     <li><a href="#propriété">Propriété</a></li>
     <li><a href="#emplacement-actuel">Emplacement actuel</a></li>
     <li><a href="#redémarrer">Redémarrer</a></li>
+    <li><a href="#statut-dun-service">Statut d&rsquo;un service</a></li>
   </ul>
 </nav>
   </div>
@@ -1209,6 +1211,21 @@ Affiche le chemin du dossier courant.</p>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo reboot
 </span></span></code></pre></div><hr>
+
+<h2 class="relative group">Statut d&rsquo;un service
+    <div id="statut-dun-service" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#statut-dun-service" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo systemctl status <span class="o">[</span>SERVICE<span class="o">]</span>
+</span></span></code></pre></div><p>Description :<br>
+Affiche le statut du service donné.</p>
+<p><code>SERVICE</code> : Le nom du service à afficher.</p>
+<hr>
 
           
           

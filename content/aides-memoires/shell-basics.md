@@ -193,3 +193,16 @@ sudo reboot
 ```
 
 ---
+
+## Statut d'un service
+
+```sh
+sudo systemctl status [SERVICE]
+```
+
+Description :  
+Affiche le statut du service donné.
+
+`SERVICE` : Le nom du service à afficher.
+
+---
