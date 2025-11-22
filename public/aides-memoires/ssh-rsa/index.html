@@ -221,7 +221,7 @@
     "keywords": ["linux","shell","ssh","rsa"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "818"
+    "wordCount": "833"
   }]
   </script>
 
@@ -1016,7 +1016,7 @@ Nous allons utiliser <em>OpenSSH</em> pour ce tutoriel.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt update                  <span class="c1"># Met à jour le gestionnaire apt</span>
 </span></span><span class="line"><span class="cl">sudo apt install openssh-server  <span class="c1"># Installe OpenSSH</span>
 </span></span><span class="line"><span class="cl">sudo systemctl start ssh         <span class="c1"># Démarre OpenSSH</span>
-</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> ssh        <span class="c1"># Ajoute xrdp aux démarrages auto</span>
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> ssh        <span class="c1"># Ajoute ssh au démarrage automatique</span>
 </span></span><span class="line"><span class="cl">sudo systemctl status ssh        <span class="c1"># Affiche le statut de Open SSH</span>
 </span></span></code></pre></div><p>Ensuite vérifiez que le port utilisé par les connexions SSH est bien ouvert.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo ufw allow ssh  <span class="c1"># Exemple avec le firewall UFW</span>
@@ -1131,6 +1131,32 @@ Nous allons utiliser <em>OpenSSH</em> pour ce tutoriel.</p>
     </span>
     
 </h3>
+
+  
+
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900"
+  
+  >
+  <span
+    
+      class="text-primary-400 pe-3 flex items-center"
+    
+    >
+    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span>
+  </span>
+
+  <span
+    
+      class="dark:text-neutral-300"
+    
+    ><strong>Attention !</strong> Cette étape n&rsquo;est à réaliser uniquement si la connéxion par clé fonctionne !</span>
+</div>
+
 <p>Une fois que vous êtes sur que la connexion avec clés RSA fonctionne, vous pouvez désactiver la connexion par mot de passe.<br>
 Cette démarche assure que seuls les appareils ayant une clé RSA reconnue peuvent se connecter à la machine cible.</p>
 <p>Pour ce faire, connectez-vous à la machine puis éditez le fichier de configuration du serveur SSH</p>

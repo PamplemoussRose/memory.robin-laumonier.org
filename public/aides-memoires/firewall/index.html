@@ -221,7 +221,7 @@
     "keywords": ["linux","shell","firewall","ufw"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "296"
+    "wordCount": "290"
   }]
   </script>
 
@@ -934,7 +934,7 @@
   <ul>
     <li><a href="#installation-ufw">Installation UFW</a></li>
     <li><a href="#configuration">Configuration</a></li>
-    <li><a href="#exemples-de-port-courrants">Exemples de port courrants</a></li>
+    <li><a href="#exemples-de-port-courants">Exemples de port courants</a></li>
   </ul>
 </nav>
   </div>
@@ -950,7 +950,7 @@
   <ul>
     <li><a href="#installation-ufw">Installation UFW</a></li>
     <li><a href="#configuration">Configuration</a></li>
-    <li><a href="#exemples-de-port-courrants">Exemples de port courrants</a></li>
+    <li><a href="#exemples-de-port-courants">Exemples de port courants</a></li>
   </ul>
 </nav>
   </div>
@@ -979,11 +979,11 @@
     </span>
     
 </h2>
-<p>Pour unstaller le par feu Uncomplicate FireWall, il suffit d&rsquo;éxecuter les commandes suivantes :</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt update        <span class="c1"># Met à jour le gestinnaire de packet</span>
+<p>Pour installer le pare-feu Uncomplicated FireWall, il suffit d&rsquo;exécuter les commandes suivantes :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt update        <span class="c1"># Met à jour le gestionnaire de paquets</span>
 </span></span><span class="line"><span class="cl">sudo apt install ufw   <span class="c1"># Installe ufw</span>
-</span></span><span class="line"><span class="cl">sudo ufw <span class="nb">enable</span>        <span class="c1"># Ajoute ufw aux démarrages automatiques</span>
-</span></span><span class="line"><span class="cl">sudo ufw status        <span class="c1"># Affiche le statut de ufw</span>
+</span></span><span class="line"><span class="cl">sudo ufw <span class="nb">enable</span>        <span class="c1"># Ajoute ufw au démarrage automatique</span>
+</span></span><span class="line"><span class="cl">sudo ufw statut        <span class="c1"># Affiche le statut de ufw</span>
 </span></span></code></pre></div><hr>
 
 <h2 class="relative group">Configuration
@@ -995,17 +995,17 @@
     </span>
     
 </h2>
-<p>Par défaut, quand le par feu est activé, tous les ports sont fermés.<br>
-Il est cependant possible d&rsquo;ouvrir des ports pour autoriser les requêtes à passer par ce port.</p>
+<p>Par défaut, quand le pare-feu est activé, tous les ports sont fermés.<br>
+Il est cependant possible d&rsquo;ouvrir des ports pour autoriser les requêtes à passer via ce port.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo ufw allow <span class="o">[</span>ARG<span class="o">]</span>
-</span></span></code></pre></div><p><code>[ARG]</code> est à remplacer par le port à ouvrir sur le par feu.</p>
-<p>Si vous voulez fermer un port ouvert, entrez la commande suivante en spécifant le port à fermer :</p>
+</span></span></code></pre></div><p><code>[ARG]</code> est à remplacer par le port à ouvrir sur le pare-feu.</p>
+<p>Si vous voulez fermer un port ouvert, entrez la commande suivante en spécifiant le port à fermer :</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo ufw delete allow <span class="o">[</span>ARG<span class="o">]</span>
-</span></span></code></pre></div><p>Pour afficher le status et la configuration du par feu, vous pouvez utiliser la commande suivante</p>
+</span></span></code></pre></div><p>Pour afficher le statut et la configuration du pare-feu, vous pouvez utiliser la commande suivante</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo ufw status verbose
 </span></span></code></pre></div><p>L&rsquo;ajout du mot <code>verbose</code> permet d&rsquo;avoir plus de détails sur la configuration.</p>
-<p>Une configuration pour un par feu ayant les ports HTTP et HTTPS ouverts pour les adresses IPv4 et IPv6 ressemble à ça</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">Status: active
+<p>Une configuration pour un pare-feu ayant les ports HTTP et HTTPS ouverts pour les adresses IPv4 et IPv6 ressemble à ça</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">statut: active
 </span></span><span class="line"><span class="cl">Logging: on (low)
 </span></span><span class="line"><span class="cl">Default: deny (incoming), allow (outgoing), deny (routed)
 </span></span><span class="line"><span class="cl">New profiles: skip
@@ -1018,16 +1018,16 @@ Il est cependant possible d&rsquo;ouvrir des ports pour autoriser les requêtes 
 </span></span><span class="line"><span class="cl">443/tcp (v6)               ALLOW IN    Anywhere (v6)
 </span></span></code></pre></div><hr>
 
-<h2 class="relative group">Exemples de port courrants
-    <div id="exemples-de-port-courrants" class="anchor"></div>
+<h2 class="relative group">Exemples de port courants
+    <div id="exemples-de-port-courants" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#exemples-de-port-courrants" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#exemples-de-port-courants" aria-label="Anchor">#</a>
     </span>
     
 </h2>
-<p>Voici une liste non exaustive de ports courant avec le protocol utilisés :</p>
+<p>Voici une liste non exhaustive de ports courants avec le protocol utilisé :</p>
 <ul>
 <li>20, 21 (TCP): FTP</li>
 <li>22 (TCP) : SSH</li>
@@ -1035,7 +1035,7 @@ Il est cependant possible d&rsquo;ouvrir des ports pour autoriser les requêtes 
 <li>80 (TCP): HTTP</li>
 <li>389 (TCP/UDP) : LDAP</li>
 <li>443 (TCP) : HTTPS</li>
-<li>465, 587 (TCP): SMTP sécurisé</li>
+<li>465, 587 (TCP): SMTPS</li>
 <li>636 (TCP) : LDAPS</li>
 <li>1433 (TCP) : Microsoft SQL Server</li>
 <li>1521 (TCP) : Oracle Database</li>

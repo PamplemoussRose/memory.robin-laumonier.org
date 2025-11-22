@@ -21,7 +21,7 @@ Nous allons utiliser *OpenSSH* pour ce tutoriel.
 sudo apt update                  # Met à jour le gestionnaire apt
 sudo apt install openssh-server  # Installe OpenSSH
 sudo systemctl start ssh         # Démarre OpenSSH
-sudo systemctl enable ssh        # Ajoute xrdp aux démarrages auto
+sudo systemctl enable ssh        # Ajoute ssh au démarrage automatique
 sudo systemctl status ssh        # Affiche le statut de Open SSH
 ```
 
@@ -121,6 +121,10 @@ Vous pouvez maintenant vous déconnecter de la machine cible.
 Pour tester la bonne mise en place des clés RSA, vous pouvez vous connecter comme précédement et cette fois il vous sera demandé la phrase de passe que vous avez défini lors de la génération des clés pour valider votre connexion SSH.
 
 ### Sécurisation
+
+{{< alert >}}
+**Attention !** Cette étape n'est à réaliser uniquement si la connéxion par clé fonctionne !
+{{< /alert >}}
 
 Une fois que vous êtes sur que la connexion avec clés RSA fonctionne, vous pouvez désactiver la connexion par mot de passe.  
 Cette démarche assure que seuls les appareils ayant une clé RSA reconnue peuvent se connecter à la machine cible.

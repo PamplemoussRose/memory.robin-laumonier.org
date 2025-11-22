@@ -52,7 +52,7 @@ Installez et lancez le logiciel *xrdp* sur votre machine Linux.
 sudo apt update             # Met à jour le gestionnaire apt
 sudo apt upgrade -y         # Met à jour les paquets installés
 sudo apt install xrdp -y    # Installe xrdp
-sudo systemctl enable xrdp  # Ajoute xrdp aux démarrages automatiques
+sudo systemctl enable xrdp  # Ajoute xrdp au démarrage automatique
 sudo systemctl start xrdp   # Lance xrdp
 ```
 

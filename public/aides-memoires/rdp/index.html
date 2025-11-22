@@ -1083,7 +1083,7 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt update             <span class="c1"># Met à jour le gestionnaire apt</span>
 </span></span><span class="line"><span class="cl">sudo apt upgrade -y         <span class="c1"># Met à jour les paquets installés</span>
 </span></span><span class="line"><span class="cl">sudo apt install xrdp -y    <span class="c1"># Installe xrdp</span>
-</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> xrdp  <span class="c1"># Ajoute xrdp aux démarrages automatiques</span>
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> xrdp  <span class="c1"># Ajoute xrdp au démarrage automatique</span>
 </span></span><span class="line"><span class="cl">sudo systemctl start xrdp   <span class="c1"># Lance xrdp</span>
 </span></span></code></pre></div><p>Vérifiez que le port 3389 est ouvert pour les adresses IPv4 comme IPv6.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo ufw allow 3389/tcp     <span class="c1"># Exemple avec le firewall UFW</span>

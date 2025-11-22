@@ -221,7 +221,7 @@
     "keywords": ["dns","cloudflare","serveur web","site web"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "5"
+    "wordCount": "953"
   }]
   </script>
 
@@ -934,6 +934,13 @@
   <ul>
     <li><a href="#prérequis">Prérequis</a></li>
     <li><a href="#enregistrements-dns">Enregistrements DNS</a></li>
+    <li><a href="#mise-à-jour-automatique">Mise à jour automatique</a>
+      <ul>
+        <li><a href="#création-du-jeton-api">Création du jeton API</a></li>
+        <li><a href="#création-du-script-bash">Création du script bash</a></li>
+        <li><a href="#automatisation-de-la-mise-à-jour">Automatisation de la mise à jour</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -949,6 +956,13 @@
   <ul>
     <li><a href="#prérequis">Prérequis</a></li>
     <li><a href="#enregistrements-dns">Enregistrements DNS</a></li>
+    <li><a href="#mise-à-jour-automatique">Mise à jour automatique</a>
+      <ul>
+        <li><a href="#création-du-jeton-api">Création du jeton API</a></li>
+        <li><a href="#création-du-script-bash">Création du script bash</a></li>
+        <li><a href="#automatisation-de-la-mise-à-jour">Automatisation de la mise à jour</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -977,6 +991,12 @@
     </span>
     
 </h2>
+<p>Pour mettre en place le DNS dynamique via Cloudflare, vous devez avoir</p>
+<ul>
+<li>Un compte Cloudflare opérationnel</li>
+<li>Un domaine dont vous êtes le propriétaire</li>
+<li>L&rsquo;adresse IP vers laquelle vous voulez rediriger</li>
+</ul>
 <hr>
 
 <h2 class="relative group">Enregistrements DNS
@@ -988,6 +1008,218 @@
     </span>
     
 </h2>
+<p>Avant de le rendre dynamique, il faut d&rsquo;abord paramétrer le DNS.</p>
+<p>Pour cela, allez dans l&rsquo;onglet DNS de votre compte Cloudflare, puis dans la partie <em>DNS management</em> cliquez sur <em>Add record</em>.<br>
+Il vous sera alors demandé de choisir le type d&rsquo;enregistrement, son nom ainsi que l&rsquo;adresse de redirection. Choisissez un enregistrement de type A et entrez le nom de l&rsquo;enregistrement ainsi que l&rsquo;adresse voulue puis cliquez sur <em>Save</em>.</p>
+<p>Vérifiez que le proxy est bien activé avant de valider votre enregistrement DNS.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="Enregistrement DNS"
+    width="1035"
+    height="101"
+    src="/images/dns-record_hu_60571584c31682cb.png"
+    srcset="/images/dns-record_hu_60571584c31682cb.png 800w, /images/dns-record.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/images/dns-record.png"></figure>
+<p>Votre nouvel enregistrement doit maintenant apparaître dans la liste sur votre page DNS.</p>
+<hr>
+
+<h2 class="relative group">Mise à jour automatique
+    <div id="mise-à-jour-automatique" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#mise-%c3%a0-jour-automatique" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Maintenant que l&rsquo;enregistrement est ajouté , le DNS est actif pour cette adresse. Pour le rendre dynamique, il faut automatiser la mise à jour de l&rsquo;adresse de redirection de l&rsquo;enregistrement créé.</p>
+<p>Pour ce faire nous allons créer un script bash qui va comparer notre adresse actuelle à celle de l&rsquo;enregistrement DNS grâce à l&rsquo;API Cloudflare.</p>
+
+<h3 class="relative group">Création du jeton API
+    <div id="création-du-jeton-api" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#cr%c3%a9ation-du-jeton-api" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Pour commencer, nous allons créer le jeton API qui va permettre d&rsquo;accéder à l&rsquo;enregistrement.</p>
+<p>Allez dans votre profil Cloudflare puis, dans l&rsquo;onglet <em>API Tokens</em>, cliquez sur <em>Create Token</em>. Choisissez le modèle <em>Edit zone DNS</em> puis donnez un nom au jeton et ajoutez votre domaine dans la partie <em>Zone Resources</em>.</p>
+<p>Au final, le jeton a les propriétés suivantes :</p>
+<ul>
+<li><em>Permissions</em> : <code>Zone</code> - <code>DNS</code> - <code>Edit</code></li>
+<li><em>Zone Resources</em> : <code>Include</code> - <code>Specific Zone</code> - <code>nom_de_votre_domaine</code></li>
+</ul>
+<p>Vous pouvez ensuite cliquer sur <em>Continue to summary</em> puis <em>Create Token</em>.</p>
+
+  
+
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900"
+  
+  >
+  <span
+    
+      class="text-primary-400 pe-3 flex items-center"
+    
+    >
+    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span>
+  </span>
+
+  <span
+    
+      class="dark:text-neutral-300"
+    
+    >Retenez bien le nom que vous avez donné au jeton, il sera utilisé dans le script.</span>
+</div>
+
+
+<h3 class="relative group">Création du script bash
+    <div id="création-du-script-bash" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#cr%c3%a9ation-du-script-bash" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Nous allons maintenant créer le cœur de la mise à jour des enregistrements.</p>
+<p>Pour commencer, créez le fichier qui va contenir le script bash :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo nano /usr/local/bin/cloudflare_ddns_update.sh
+</span></span></code></pre></div><p>Ensuite, ajoutez le code suivant dans le fichier.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Configuration</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Remplacer par votre adresse e-mail Cloudflare</span>
+</span></span><span class="line"><span class="cl"><span class="nv">CLOUDFLARE_EMAIL</span><span class="o">=</span><span class="s2">&#34;adresse_mail_du_compte&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Remplacer par votre jeton API Cloudflare</span>
+</span></span><span class="line"><span class="cl"><span class="nv">CLOUDFLARE_API_KEY</span><span class="o">=</span><span class="s2">&#34;nom_du_jeton_api&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Remplacer par votre nom de domaine principal</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ZONE_NAME</span><span class="o">=</span><span class="s2">&#34;nom_de_votre_domaine&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Liste des sous-domaines complets à mettre à jour.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Ajoutez autant d&#39;enregistrements que vous le souhaitez dans cette liste.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">RECORD_NAMES</span><span class="o">=(</span><span class="s2">&#34;enregistrement1&#34;</span> <span class="s2">&#34;enregistrement2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Fichier pour stocker la dernière adresse IP connue</span>
+</span></span><span class="line"><span class="cl"><span class="nv">IP_FILE</span><span class="o">=</span><span class="s2">&#34;/var/tmp/cloudflare_ddns_ip.txt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Fichier de log</span>
+</span></span><span class="line"><span class="cl"><span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">&#34;/var/log/cloudflare_ddns.log&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Fonction de log</span>
+</span></span><span class="line"><span class="cl">log<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Ajoute la date et l&#39;heure à chaque entrée de log</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="k">$(</span>date <span class="s1">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class="k">)</span><span class="s2"> - </span><span class="nv">$1</span><span class="s2">&#34;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$LOG_FILE</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. Obtenir l&#39;adresse IP publique actuelle</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Utilisation de `dig` pour une méthode plus robuste, avec `curl` en secours.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">CURRENT_IP</span><span class="o">=</span><span class="k">$(</span>dig +short myip.opendns.com @resolver1.opendns.com<span class="k">)</span> <span class="o">||</span> <span class="nv">CURRENT_IP</span><span class="o">=</span><span class="k">$(</span>curl -s https://api.ipify.org <span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$CURRENT_IP</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    log <span class="s2">&#34;ERREUR: Impossible d&#39;obtenir l&#39;adresse IP publique actuelle.&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. Vérifier si l&#39;adresse IP a changé</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> -f <span class="s2">&#34;</span><span class="nv">$IP_FILE</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">LAST_IP</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$IP_FILE</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">LAST_IP</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$CURRENT_IP</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;</span><span class="nv">$LAST_IP</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    log <span class="s2">&#34;INFO: L&#39;adresse IP n&#39;a pas changé (</span><span class="nv">$CURRENT_IP</span><span class="s2">). Aucune mise à jour nécessaire.&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">log <span class="s2">&#34;INFO: L&#39;adresse IP a changé: de &#39;</span><span class="nv">$LAST_IP</span><span class="s2">&#39; à &#39;</span><span class="nv">$CURRENT_IP</span><span class="s2">&#39;. Début de la mise à jour DNS.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. Obtenir l&#39;ID de la Zone (une seule fois pour le domaine principal)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ZONE_ID</span><span class="o">=</span><span class="k">$(</span>curl -s -X GET <span class="s2">&#34;https://api.cloudflare.com/client/v4/zones?name=</span><span class="nv">$ZONE_NAME</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -H <span class="s2">&#34;X-Auth-Email: </span><span class="nv">$CLOUDFLARE_EMAIL</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -H <span class="s2">&#34;X-Auth-Key: </span><span class="nv">$CLOUDFLARE_API_KEY</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -H <span class="s2">&#34;Content-Type: application/json&#34;</span> <span class="p">|</span> grep -oP <span class="s1">&#39;(?&lt;=&#34;id&#34;:&#34; )[^&#34;]*&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$ZONE_ID</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    log <span class="s2">&#34;ERREUR: Impossible d&#39;obtenir l&#39;ID de la Zone pour &#39;</span><span class="nv">$ZONE_NAME</span><span class="s2">&#39;.&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Boucle sur chaque enregistrement à mettre à jour</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> RECORD_NAME in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">RECORD_NAMES</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    log <span class="s2">&#34;--- Traitement de l&#39;enregistrement: </span><span class="nv">$RECORD_NAME</span><span class="s2"> ---&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 4. Obtenir l&#39;ID de l&#39;Enregistrement DNS</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">RECORD_DETAILS</span><span class="o">=</span><span class="k">$(</span>curl -s -X GET <span class="s2">&#34;https://api.cloudflare.com/client/v4/zones/</span><span class="nv">$ZONE_ID</span><span class="s2">/dns_records?type=A&amp;name=</span><span class="nv">$RECORD_NAME</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        -H <span class="s2">&#34;X-Auth-Email: </span><span class="nv">$CLOUDFLARE_EMAIL</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        -H <span class="s2">&#34;X-Auth-Key: </span><span class="nv">$CLOUDFLARE_API_KEY</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        -H <span class="s2">&#34;Content-Type: application/json&#34;</span> <span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">RECORD_ID</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$RECORD_DETAILS</span><span class="s2">&#34;</span> <span class="p">|</span> grep -oP <span class="s1">&#39;(?&lt;=&#34;id&#34;:&#34;)[^&#34;]*&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$RECORD_ID</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        log <span class="s2">&#34;ERREUR: Impossible d&#39;obtenir l&#39;ID pour &#39;</span><span class="nv">$RECORD_NAME</span><span class="s2">&#39;. Assurez-vous que cet enregistrement de type A existe.&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">continue</span> <span class="c1"># Passe à l&#39;enregistrement suivant</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 5. Mettre à jour l&#39;enregistrement DNS</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">UPDATE_RESPONSE</span><span class="o">=</span><span class="k">$(</span>curl -s -X PUT <span class="s2">&#34;https://api.cloudflare.com/client/v4/zones/</span><span class="nv">$ZONE_ID</span><span class="s2">/dns_records/</span><span class="nv">$RECORD_ID</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        -H <span class="s2">&#34;X-Auth-Email: </span><span class="nv">$CLOUDFLARE_EMAIL</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        -H <span class="s2">&#34;X-Auth-Key: </span><span class="nv">$CLOUDFLARE_API_KEY</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        -H <span class="s2">&#34;Content-Type: application/json&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        --data <span class="s2">&#34;{\&#34;type\&#34;:\&#34;A\&#34;,\&#34;name\&#34;:\&#34;</span><span class="nv">$RECORD_NAME</span><span class="s2">\&#34;,\&#34;content\&#34;:\&#34;</span><span class="nv">$CURRENT_IP</span><span class="s2">\&#34;,\&#34;proxied\&#34;:true,\&#34;ttl\&#34;:1}&#34;</span> <span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$UPDATE_RESPONSE</span><span class="s2">&#34;</span> <span class="p">|</span> grep -q <span class="s1">&#39;&#34;success&#34;:true&#39;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        log <span class="s2">&#34;SUCCÈS: Mise à jour de &#39;</span><span class="nv">$RECORD_NAME</span><span class="s2">&#39; avec l&#39;IP &#39;</span><span class="nv">$CURRENT_IP</span><span class="s2">&#39;.&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        log <span class="s2">&#34;ERREUR: La mise à jour de &#39;</span><span class="nv">$RECORD_NAME</span><span class="s2">&#39; a échoué. Réponse de l&#39;API: </span><span class="nv">$UPDATE_RESPONSE</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 6. Sauvegarder la nouvelle adresse IP (uniquement si toutes les mises à jour ont été tentées)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$CURRENT_IP</span><span class="s2">&#34;</span> &gt; <span class="s2">&#34;</span><span class="nv">$IP_FILE</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">log <span class="s2">&#34;--- Fin du script ---&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="m">0</span>
+</span></span></code></pre></div><p>Vous devez modifier les valeurs suivantes au début du script :</p>
+<ul>
+<li><code>CLOUDFLARE_EMAIL</code> : l&rsquo;adresse mail du compte Cloudflare que vous utilisez</li>
+<li><code>CLOUDFLARE_API_KEY</code> : le nom du jeton que vous avez créé</li>
+<li><code>ZONE_NAME</code> : le nom de votre domaine (ex : domaine.com)</li>
+<li><code>RECORD_NAMES</code> : les noms des enregistrements à mettre à jour (ex : dev.domaine.com, test.domaine.com, &hellip;)</li>
+</ul>
+<p>Ce script fonctionne même si plusieurs enregistrements sont à mettre à jour car une boucle tourne sur la variable <code>RECORD_NAMES</code> qui peut contenir plusieurs enregistrements.</p>
+<p>Une fois les valeurs modifiées, vous pouvez enregistrer et quitter le fichier.</p>
+<p>Il faut pour finir le rendre exécutable avec la commande suivante :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo chmod +x /usr/local/bin/cloudflare_ddns_update.sh
+</span></span></code></pre></div>
+<h3 class="relative group">Automatisation de la mise à jour
+    <div id="automatisation-de-la-mise-à-jour" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#automatisation-de-la-mise-%c3%a0-jour" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>La dernière partie est l&rsquo;automatisation de la mise à jour.</p>
+<p>Pour cela, nous allons ajouter l&rsquo;exécution du script à <em>cron</em> qui exécute une liste de programme.</p>
+<p>Pour accèder au fichier de configuration de <em>cron</em>, entrez la commande suivante :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">crontab -e
+</span></span></code></pre></div><p>Ensuite, ajoutez cette ligne à la fin du fichier.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">*/5 * * * * /usr/local/bin/cloudflare_ddns_update.sh
+</span></span></code></pre></div><p>Cette ligne indique que le programme <code>/usr/local/bin/cloudflare_ddns_update.sh</code> doit être exécuté toutes les 5 minutes.</p>
+<p>Le DNS dynamique avec Cloudflare est maintenant opérationnel.</p>
 <hr>
 
           

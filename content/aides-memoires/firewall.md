@@ -12,35 +12,35 @@ draft: "false" # Set to true if this page is not to be shown
 
 ## Installation UFW
 
-Pour unstaller le par feu Uncomplicate FireWall, il suffit d'éxecuter les commandes suivantes :
+Pour installer le pare-feu Uncomplicated FireWall, il suffit d'exécuter les commandes suivantes :
 
 ```sh
-sudo apt update        # Met à jour le gestinnaire de packet
+sudo apt update        # Met à jour le gestionnaire de paquets
 sudo apt install ufw   # Installe ufw
-sudo ufw enable        # Ajoute ufw aux démarrages automatiques
-sudo ufw status        # Affiche le statut de ufw
+sudo ufw enable        # Ajoute ufw au démarrage automatique
+sudo ufw statut        # Affiche le statut de ufw
 ```
 
 ---
 
 ## Configuration
 
-Par défaut, quand le par feu est activé, tous les ports sont fermés.  
-Il est cependant possible d'ouvrir des ports pour autoriser les requêtes à passer par ce port.
+Par défaut, quand le pare-feu est activé, tous les ports sont fermés.  
+Il est cependant possible d'ouvrir des ports pour autoriser les requêtes à passer via ce port.
 
 ```sh
 sudo ufw allow [ARG]
 ```
 
-`[ARG]` est à remplacer par le port à ouvrir sur le par feu.
+`[ARG]` est à remplacer par le port à ouvrir sur le pare-feu.
 
-Si vous voulez fermer un port ouvert, entrez la commande suivante en spécifant le port à fermer :
+Si vous voulez fermer un port ouvert, entrez la commande suivante en spécifiant le port à fermer :
 
 ```sh
 sudo ufw delete allow [ARG]
 ```
 
-Pour afficher le status et la configuration du par feu, vous pouvez utiliser la commande suivante
+Pour afficher le statut et la configuration du pare-feu, vous pouvez utiliser la commande suivante
 
 ```sh
 sudo ufw status verbose
@@ -48,10 +48,10 @@ sudo ufw status verbose
 
 L'ajout du mot `verbose` permet d'avoir plus de détails sur la configuration.
 
-Une configuration pour un par feu ayant les ports HTTP et HTTPS ouverts pour les adresses IPv4 et IPv6 ressemble à ça
+Une configuration pour un pare-feu ayant les ports HTTP et HTTPS ouverts pour les adresses IPv4 et IPv6 ressemble à ça
 
 ```txt
-Status: active
+statut: active
 Logging: on (low)
 Default: deny (incoming), allow (outgoing), deny (routed)
 New profiles: skip
@@ -66,9 +66,9 @@ To                         Action      From
 
 ---
 
-## Exemples de port courrants
+## Exemples de port courants
 
-Voici une liste non exaustive de ports courant avec le protocol utilisés :
+Voici une liste non exhaustive de ports courants avec le protocol utilisé :
 
 - 20, 21 (TCP): FTP
 - 22 (TCP) : SSH
@@ -76,7 +76,7 @@ Voici une liste non exaustive de ports courant avec le protocol utilisés :
 - 80 (TCP): HTTP
 - 389 (TCP/UDP) : LDAP
 - 443 (TCP) : HTTPS
-- 465, 587 (TCP): SMTP sécurisé
+- 465, 587 (TCP): SMTPS
 - 636 (TCP) : LDAPS
 - 1433 (TCP) : Microsoft SQL Server
 - 1521 (TCP) : Oracle Database
