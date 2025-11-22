@@ -25,6 +25,8 @@ sudo systemctl start nginx      # Lance nginx
 
 ## Mise en place d'un site
 
+### Configuration Nginx
+
 Une fois que Nginx est installé, nous pouvons commencer la configuration du site.
 
 {{< alert "circle-info">}}
@@ -96,6 +98,22 @@ sudo nginx -t
 # Redémarrer Nginx
 sudo systemctl restart nginx
 ```
+
+### Configuration du Routeur
+
+La dernière étape pour rendre accessible votre site est le transfert de trafic, c'est-à-dire faire en sort que les requêtes arrivant au routeur soient transférées vers votre serveur.
+
+Pour ce faire, vous devez vous connecter à l'interface d'administration de votre routeur internet (souvent 192.168.0.1 ou 192.168.1.1) puis chercher la partie *Redirection de port* ou *Port forwarding*.
+
+Vous devez alors créer une règle pour rediriger le trafic arrivant sur le port 80. La règle doit être la suivante :
+
+- Port Externe (Public) : 80
+- Port Interne (Local) : 80
+- Adresse de redirection : L'adresse IP locale de votre machine
+
+{{< alert "circle-info">}}
+Si vous prévoyez de mettre en place la connexion HTTPS, vous pouvez alors faire de même avec le port 443.
+{{< /alert >}}
 
 Votre site est maintenant accessible en HTTP via l'adresse IP de votre routeur ou via une URL si vous avez paramétré un DNS.
 

@@ -222,7 +222,7 @@
     "keywords": ["linux","shell","nginx","serveur web","site web"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "773"
+    "wordCount": "898"
   }]
   </script>
 
@@ -944,7 +944,12 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#installation-de-nginx">Installation de Nginx</a></li>
-    <li><a href="#mise-en-place-dun-site">Mise en place d&rsquo;un site</a></li>
+    <li><a href="#mise-en-place-dun-site">Mise en place d&rsquo;un site</a>
+      <ul>
+        <li><a href="#configuration-nginx">Configuration Nginx</a></li>
+        <li><a href="#configuration-du-routeur">Configuration du Routeur</a></li>
+      </ul>
+    </li>
     <li><a href="#activation-de-la-connexion-https">Activation de la connexion HTTPS</a>
       <ul>
         <li><a href="#mode-ssltls">Mode SSL/TLS</a></li>
@@ -967,7 +972,12 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#installation-de-nginx">Installation de Nginx</a></li>
-    <li><a href="#mise-en-place-dun-site">Mise en place d&rsquo;un site</a></li>
+    <li><a href="#mise-en-place-dun-site">Mise en place d&rsquo;un site</a>
+      <ul>
+        <li><a href="#configuration-nginx">Configuration Nginx</a></li>
+        <li><a href="#configuration-du-routeur">Configuration du Routeur</a></li>
+      </ul>
+    </li>
     <li><a href="#activation-de-la-connexion-https">Activation de la connexion HTTPS</a>
       <ul>
         <li><a href="#mode-ssltls">Mode SSL/TLS</a></li>
@@ -1020,6 +1030,16 @@
     </span>
     
 </h2>
+
+<h3 class="relative group">Configuration Nginx
+    <div id="configuration-nginx" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#configuration-nginx" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>Une fois que Nginx est installé, nous pouvons commencer la configuration du site.</p>
 
   
@@ -1092,7 +1112,51 @@ Si le test réussit, vous pouvez redémarrer Nginx pour appliquer les changement
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Redémarrer Nginx</span>
 </span></span><span class="line"><span class="cl">sudo systemctl restart nginx
-</span></span></code></pre></div><p>Votre site est maintenant accessible en HTTP via l&rsquo;adresse IP de votre routeur ou via une URL si vous avez paramétré un DNS.</p>
+</span></span></code></pre></div>
+<h3 class="relative group">Configuration du Routeur
+    <div id="configuration-du-routeur" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#configuration-du-routeur" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>La dernière étape pour rendre accessible votre site est le transfert de trafic, c&rsquo;est-à-dire faire en sort que les requêtes arrivant au routeur soient transférées vers votre serveur.</p>
+<p>Pour ce faire, vous devez vous connecter à l&rsquo;interface d&rsquo;administration de votre routeur internet (souvent 192.168.0.1 ou 192.168.1.1) puis chercher la partie <em>Redirection de port</em> ou <em>Port forwarding</em>.</p>
+<p>Vous devez alors créer une règle pour rediriger le trafic arrivant sur le port 80. La règle doit être la suivante :</p>
+<ul>
+<li>Port Externe (Public) : 80</li>
+<li>Port Interne (Local) : 80</li>
+<li>Adresse de redirection : L&rsquo;adresse IP locale de votre machine</li>
+</ul>
+
+  
+
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900"
+  
+  >
+  <span
+    
+      class="text-primary-400 pe-3 flex items-center"
+    
+    >
+    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span>
+  </span>
+
+  <span
+    
+      class="dark:text-neutral-300"
+    
+    >Si vous prévoyez de mettre en place la connexion HTTPS, vous pouvez alors faire de même avec le port 443.</span>
+</div>
+
+<p>Votre site est maintenant accessible en HTTP via l&rsquo;adresse IP de votre routeur ou via une URL si vous avez paramétré un DNS.</p>
 <hr>
 
 <h2 class="relative group">Activation de la connexion HTTPS
