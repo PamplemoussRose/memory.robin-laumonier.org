@@ -222,7 +222,7 @@
     "keywords": ["linux","shell","nginx","serveur web","site web"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "898"
+    "wordCount": "1117"
   }]
   </script>
 
@@ -784,6 +784,8 @@
   
 
   
+    
+  
 
   
 
@@ -804,6 +806,8 @@
 
   <div class="flex flex-row flex-wrap items-center">
     
+    
+      <time datetime="2025-11-16T00:00:00&#43;00:00">16 November 2025</time>
     
 
     
@@ -958,6 +962,7 @@
         <li><a href="#renouvellement-de-certificat">Renouvellement de certificat</a></li>
       </ul>
     </li>
+    <li><a href="#ajouter-dautres-sites">Ajouter d&rsquo;autres sites</a></li>
   </ul>
 </nav>
   </div>
@@ -986,6 +991,7 @@
         <li><a href="#renouvellement-de-certificat">Renouvellement de certificat</a></li>
       </ul>
     </li>
+    <li><a href="#ajouter-dautres-sites">Ajouter d&rsquo;autres sites</a></li>
   </ul>
 </nav>
   </div>
@@ -1206,7 +1212,7 @@ Si le test réussit, vous pouvez redémarrer Nginx pour appliquer les changement
     
 </h3>
 <p>Maintenant que certbot est installé, nous pouvons lancer la génération du certificat avec la commande suivante :</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo certbot --nginx -d cv.robin-laumonier.org
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo certbot --nginx -d mon_site_web
 </span></span></code></pre></div><p>Une fois la commande lancée, suivez les instructions à l&rsquo;écran. Une des question vous demandera de choisir entre retirer la connexion HTTP ou la rediriger vers la connexion HTTPS. Il est recommandé de rediriger les connexions HTTP vers celles HTTPS.</p>
 <p>Une fois le certificat généré, certbot fait des changements dans le fichier de configuration de votre site. Après modification, il doit avoir le format suivant :</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">server {
@@ -1254,6 +1260,58 @@ Si le test réussit, vous pouvez redémarrer Nginx pour appliquer les changement
 <p>Vous pouvez tester le processus avec la commande suivante. Si elle réussit, le renouvellement automatique fonctionnera correctement.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo certbot renew --dry-run
 </span></span></code></pre></div><hr>
+
+<h2 class="relative group">Ajouter d&rsquo;autres sites
+    <div id="ajouter-dautres-sites" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#ajouter-dautres-sites" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Pour ajouter de nouveaux sites sur le même serveur, il suffit de répéter la démarche de l&rsquo;étape <a
+  href="#configuration-nginx"><strong>Configuration Nginx</strong></a> avec le nom du site que vous voulez ajouter.</p>
+<p>Vous aurez alors l&rsquo;architecture suivante :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">root
+</span></span><span class="line"><span class="cl">├── /etc/nginx            # Dossier de configuration de Nginx
+</span></span><span class="line"><span class="cl">│   ├── sites-available   # Fichiers de configuration
+</span></span><span class="line"><span class="cl">|   |   ├── mon_site_web
+</span></span><span class="line"><span class="cl">|   │   └── deuxieme_site
+</span></span><span class="line"><span class="cl">│   └── sistes-enabled    # Liens symboliques pour activer les sites
+</span></span><span class="line"><span class="cl">|       ├── mon_site_web
+</span></span><span class="line"><span class="cl">|       └── deuxieme_site
+</span></span><span class="line"><span class="cl">|
+</span></span><span class="line"><span class="cl">└── /var/www              # Dossier contenant les fichiers des sites
+</span></span><span class="line"><span class="cl">    ├── mon_site_web      # Code du premier site
+</span></span><span class="line"><span class="cl">    │   ├── index.html
+</span></span><span class="line"><span class="cl">    │   └── styles.css
+</span></span><span class="line"><span class="cl">    └── deuxieme_site     # Code du deuxième site
+</span></span><span class="line"><span class="cl">        ├── index.html
+</span></span><span class="line"><span class="cl">        └── styles.css
+</span></span></code></pre></div><p>Le fichier de configuratuion du deuxième site sera alors :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">server {
+</span></span><span class="line"><span class="cl">    # Port d&#39;écoute
+</span></span><span class="line"><span class="cl">    listen 80;        # IPv4
+</span></span><span class="line"><span class="cl">    listen [::]:80;   # IPv6
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    # Nom du site
+</span></span><span class="line"><span class="cl">    server_name deuxieme_site;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    # Chemin racine du site
+</span></span><span class="line"><span class="cl">    root /var/www/deuxieme_site;
+</span></span><span class="line"><span class="cl">    # Ficher à chercher à la racine
+</span></span><span class="line"><span class="cl">    index index.html;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    # Comportement lors de la réception d&#39;une requête
+</span></span><span class="line"><span class="cl">    location / {
+</span></span><span class="line"><span class="cl">        try_files $uri $uri/ =404;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><p>Une fois la configuration nginx terminée, vous pouvez créer l&rsquo;enregistremen DNS pour rediriger la requête HTTP vers l&rsquo;adresse IP de votre routeur internet.</p>
+<p>Il est aussi possible et recommandé de sécuriser la connexion en réalisant les même commandes que dans la partie <a
+  href="#g%c3%a9n%c3%a9ration-du-certificat"><strong>Génération du certificat</strong></a>.</p>
+<hr>
 
           
           
@@ -1309,6 +1367,10 @@ Si le test réussit, vous pouvez redémarrer Nginx pour appliquer les changement
               </span>
             </a>
             
+              <span class="ms-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2025-11-17T00:00:00&#43;00:00">17 November 2025</time>
+              </span>
+            
           
         </span>
         <span class="flex flex-col items-end">
@@ -1320,6 +1382,10 @@ Si le test réussit, vous pouvez redémarrer Nginx pour appliquer les changement
                 Mise en place d'UFW&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
               </span>
             </a>
+            
+              <span class="me-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2025-10-20T00:00:00&#43;00:00">20 October 2025</time>
+              </span>
             
           
         </span>

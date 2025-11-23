@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Node Exporter on Memory</title>
+    <link>http://localhost:1313/tags/node-exporter/</link>
+    <description>Recent content in Node Exporter on Memory</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 </copyright>
+    <lastBuildDate>Sat, 22 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/node-exporter/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Mise en place d&#39;un dashboard Grafana</title>
+      <link>http://localhost:1313/aides-memoires/dashboard-ressources/</link>
+      <pubDate>Sat, 22 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/aides-memoires/dashboard-ressources/</guid>
+      <description>Tutoriel pour mettre en place un dashboard avec Grafana pour l&amp;rsquo;interface, Prometheus pour la base de données et Node Exporter pour la collectes des métriques.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

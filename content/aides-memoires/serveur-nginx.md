@@ -145,7 +145,7 @@ sudo apt install certbot python3-certbot-nginx -y
 Maintenant que certbot est installé, nous pouvons lancer la génération du certificat avec la commande suivante :
 
 ```sh
-sudo certbot --nginx -d cv.robin-laumonier.org
+sudo certbot --nginx -d mon_site_web
 ```
 
 Une fois la commande lancée, suivez les instructions à l'écran. Une des question vous demandera de choisir entre retirer la connexion HTTP ou la rediriger vers la connexion HTTPS. Il est recommandé de rediriger les connexions HTTP vers celles HTTPS.
@@ -195,5 +195,59 @@ Vous pouvez tester le processus avec la commande suivante. Si elle réussit, le 
 ```sh
 sudo certbot renew --dry-run
 ```
+
+---
+
+## Ajouter d'autres sites
+
+Pour ajouter de nouveaux sites sur le même serveur, il suffit de répéter la démarche de l'étape [**Configuration Nginx**](#configuration-nginx) avec le nom du site que vous voulez ajouter.
+
+Vous aurez alors l'architecture suivante :
+
+```txt
+root
+├── /etc/nginx            # Dossier de configuration de Nginx
+│   ├── sites-available   # Fichiers de configuration
+|   |   ├── mon_site_web
+|   │   └── deuxieme_site
+│   └── sistes-enabled    # Liens symboliques pour activer les sites
+|       ├── mon_site_web
+|       └── deuxieme_site
+|
+└── /var/www              # Dossier contenant les fichiers des sites
+    ├── mon_site_web      # Code du premier site
+    │   ├── index.html
+    │   └── styles.css
+    └── deuxieme_site     # Code du deuxième site
+        ├── index.html
+        └── styles.css
+```
+
+Le fichier de configuratuion du deuxième site sera alors :
+
+```txt
+server {
+    # Port d'écoute
+    listen 80;        # IPv4
+    listen [::]:80;   # IPv6
+
+    # Nom du site
+    server_name deuxieme_site;
+
+    # Chemin racine du site
+    root /var/www/deuxieme_site;
+    # Ficher à chercher à la racine
+    index index.html;
+
+    # Comportement lors de la réception d'une requête
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
+
+Une fois la configuration nginx terminée, vous pouvez créer l'enregistremen DNS pour rediriger la requête HTTP vers l'adresse IP de votre routeur internet.
+
+Il est aussi possible et recommandé de sécuriser la connexion en réalisant les même commandes que dans la partie [**Génération du certificat**](#génération-du-certificat).
 
 ---

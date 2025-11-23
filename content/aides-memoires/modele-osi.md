@@ -14,7 +14,7 @@ draft: "false" # Set to true if this page is not to be shown
 
 Le modèle OSI est un modèle conceptuel de référence qui décrit les sept couches de communication d'un réseau informatique pour permettre l'interopérabilité entre différents systèmes. Chaque couche a un rôle spécifique, allant de l'envoi des signaux physiques (couche 1) à l'interface utilisateur (couche 7). Il aide à concevoir des applications et du matériel réseau, à comprendre le flux de données et à résoudre les problèmes.  
 
-![Le modèle OSI](/images/modele-osi.png) 
+![Le modèle OSI](/images/modele-osi.png)
 *&copy; OpenClassrooms*
 
 ---
