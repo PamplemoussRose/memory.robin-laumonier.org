@@ -221,7 +221,7 @@
     "keywords": ["linux","serveur web","nginx","grafana"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "538"
+    "wordCount": "539"
   }]
   </script>
 
@@ -938,7 +938,7 @@
   <ul>
     <li><a href="#prérequis">Prérequis</a></li>
     <li><a href="#situation-actuelle">Situation actuelle</a></li>
-    <li><a href="#mise-en-place-du-proxy-inverse-revers-proxy">Mise en place du proxy inverse (revers proxy)</a>
+    <li><a href="#mise-en-place-du-proxy-inverse-reverse-proxy">Mise en place du proxy inverse (reverse proxy)</a>
       <ul>
         <li><a href="#grafana">Grafana</a></li>
         <li><a href="#nginx">Nginx</a></li>
@@ -960,7 +960,7 @@
   <ul>
     <li><a href="#prérequis">Prérequis</a></li>
     <li><a href="#situation-actuelle">Situation actuelle</a></li>
-    <li><a href="#mise-en-place-du-proxy-inverse-revers-proxy">Mise en place du proxy inverse (revers proxy)</a>
+    <li><a href="#mise-en-place-du-proxy-inverse-reverse-proxy">Mise en place du proxy inverse (reverse proxy)</a>
       <ul>
         <li><a href="#grafana">Grafana</a></li>
         <li><a href="#nginx">Nginx</a></li>
@@ -994,8 +994,8 @@
     </span>
     
 </h2>
-<p>Avant de réaliser les étapes suivante, vous devez avoir mis en place un tableau de bord utilisant Grafana et avoir un serveur Nginx fonctionnel.</p>
-<p>Vous pouvez mettre en place cette installation en suivant les tutoriels suivants</p>
+<p>Avant de réaliser les étapes suivantes, vous devez avoir mis en place un tableau de bord utilisant Grafana et avoir un serveur Nginx fonctionnel.</p>
+<p>Vous pouvez mettre en place cette installation en suivant les tutoriels suivants :</p>
 <ul>
 <li><a
   href="https://memory.robin-laumonier.org/aides-memoires/dashboard-ressources/"
@@ -1017,22 +1017,22 @@
     </span>
     
 </h2>
-<p>Dans notre situation nous avons mis en place un tableau de bord utilisant Grafan qui récupère des métriques sur notre machine et nous permet de les visualiser.</p>
-<p>Ce tableau de bord est pour l&rsquo;instant uniquement accéssible sur la machine via le localhost.</p>
-<p>Notre but est de rendre ce tableau de bord accéssible via une URL pour pouvoir visualier les données sans être directement sur la machine.</p>
-<p>Pour ce faire nous allons configurer un proxy inverse (ou <em>reverse proxy</em> en anglais) pour rediriger les requètes demandant un certain site vers le localhost de la machine.</p>
+<p>Dans notre situation nous avons mis en place un tableau de bord utilisant Grafana qui récupère des métriques sur notre machine et nous permet de les visualiser.</p>
+<p>Ce tableau de bord est pour l&rsquo;instant uniquement accessible sur la machine via le localhost.</p>
+<p>Notre but est de rendre ce tableau de bord accessible via une URL pour pouvoir visualiser les données sans être directement sur la machine.</p>
+<p>Pour ce faire nous allons configurer un proxy inverse (ou <em>reverse proxy</em> en anglais) pour rediriger les requêtes demandant un certain site vers le localhost de la machine.</p>
 <hr>
 
-<h2 class="relative group">Mise en place du proxy inverse (revers proxy)
-    <div id="mise-en-place-du-proxy-inverse-revers-proxy" class="anchor"></div>
+<h2 class="relative group">Mise en place du proxy inverse (reverse proxy)
+    <div id="mise-en-place-du-proxy-inverse-reverse-proxy" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#mise-en-place-du-proxy-inverse-revers-proxy" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#mise-en-place-du-proxy-inverse-reverse-proxy" aria-label="Anchor">#</a>
     </span>
     
 </h2>
-<p>Pour mettre en place nous devons modifier le fichier de configuration Grafana et créer un nouveau site sur le serveur Nginx.</p>
+<p>Pour le mettre en place nous devons modifier le fichier de configuration Grafana et créer un nouveau site sur le serveur Nginx.</p>
 
 <h3 class="relative group">Grafana
     <div id="grafana" class="anchor"></div>
@@ -1043,7 +1043,7 @@
     </span>
     
 </h3>
-<p>Du coté de Grafana, il y a deux lignes à modifier dans le fichier <code>/etc/grafana/grafana.ini</code> :</p>
+<p>Du côté de Grafana, il y a deux lignes à modifier dans le fichier <code>/etc/grafana/grafana.ini</code> :</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[server]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Indique à Grafana l&#39;URL complète par laquelle il sera accessible</span>
@@ -1051,7 +1051,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Indique à Grafana le sous-chemin</span>
 </span></span><span class="line"><span class="cl"><span class="na">serve_from_sub_path</span> <span class="o">=</span> <span class="s">true</span>
-</span></span></code></pre></div><p>Ces changements permettent d&rsquo;avoir accès à Grafan via une URL autre que le localhost et précisent que l&rsquo;interface peut être accéssible via un sous chemin.</p>
+</span></span></code></pre></div><p>Ces changements permettent d&rsquo;avoir accès à Grafana via une URL autre que le localhost et précisent que l&rsquo;interface peut être accessible via un sous-chemin.</p>
 
 <h3 class="relative group">Nginx
     <div id="nginx" class="anchor"></div>
@@ -1063,8 +1063,8 @@
     
 </h3>
 <p>Pour Nginx, nous devons créer un nouveau site.</p>
-<p>A la différence des sites classiques, celui-la n&rsquo;a pas besoin d&rsquo;avoir de fichier à afficher. Il existe uniquement pour faire proxy.</p>
-<p>Nous avons donc justa à créer le fichier de configuration et à faire le lien symbolique pour activer le site.</p>
+<p>À la différence des sites classiques, celui-là n&rsquo;a pas besoin d&rsquo;avoir de fichier à afficher. Il existe uniquement pour faire proxy.</p>
+<p>Nous avons donc juste à créer le fichier de configuration et à faire le lien symbolique pour activer le site.</p>
 <p>Fichier de configuration <code>/etc/nginx/sites-available/dashboard.domaine.org</code> :</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">server {
 </span></span><span class="line"><span class="cl">    # Port d&#39;écoute
@@ -1073,7 +1073,7 @@
 </span></span><span class="line"><span class="cl">    # Nom de domaine que ce bloc de serveur doit gérer
 </span></span><span class="line"><span class="cl">    server_name dashboard.domaine.org;
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    # Comportement pour les requètes &#39;dashboard.domaine.org/grafana/&#39;
+</span></span><span class="line"><span class="cl">    # Comportement pour les requêtes &#39;dashboard.domaine.org/grafana/&#39;
 </span></span><span class="line"><span class="cl">    location /grafana/ {
 </span></span><span class="line"><span class="cl">        # Adresse de redirection
 </span></span><span class="line"><span class="cl">        proxy_pass http://localhost:3000/grafana/;
@@ -1086,7 +1086,7 @@
 </span></span><span class="line"><span class="cl">}
 </span></span></code></pre></div><p>Création du lien symbolique :</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo ln -s /etc/nginx/sites-available/dashboard.domaine.org /etc/nginx/sites-enabled/
-</span></span></code></pre></div><p>Vous pouvez maintenant créer l&rsquo;enregistrement DNS sur votre domaine pour rediriger les requètes <code>dashboard.domaine.org</code> vers l&rsquo;adresse IP de votre routeur internet.</p>
+</span></span></code></pre></div><p>Vous pouvez maintenant créer l&rsquo;enregistrement DNS sur votre domaine pour rediriger les requêtes <code>dashboard.domaine.org</code> vers l&rsquo;adresse IP de votre routeur Internet.</p>
 <hr>
 
 <h2 class="relative group">Mise en place du HTTPS
@@ -1098,9 +1098,9 @@
     </span>
     
 </h2>
-<p>La mise en place de la connexion HTTPS n&rsquo;est pas differente des autres sites. Utilisez la commande suivante génèrera un certificat pour le site <code>dashboard.domaine.org</code> .</p>
+<p>La mise en place de la connexion HTTPS n&rsquo;est pas différente des autres sites. Utilisez la commande suivante générera un certificat pour le site <code>dashboard.domaine.org</code> .</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo certbot --nginx -d dashboard.domaine.org
-</span></span></code></pre></div><p>Une fois le certificat installé, votre fichier de configuration pour le site <code>dashboard.domaine.org</code> devrait ressembler à ça :</p>
+</span></span></code></pre></div><p>Une fois le certificat installé, votre fichier de configuration pour le site <code>dashboard.domaine.org</code> devrait ressembler à ceci :</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">server {
 </span></span><span class="line"><span class="cl">    # Nom de domaine que ce bloc de serveur doit gérer
 </span></span><span class="line"><span class="cl">    server_name dashboard.domaine.org;

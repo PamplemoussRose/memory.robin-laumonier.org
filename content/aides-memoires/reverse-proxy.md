@@ -10,9 +10,9 @@ draft: "false" # Set to true if this page is not to be shown
 
 ## Prérequis
 
-Avant de réaliser les étapes suivante, vous devez avoir mis en place un tableau de bord utilisant Grafana et avoir un serveur Nginx fonctionnel.
+Avant de réaliser les étapes suivantes, vous devez avoir mis en place un tableau de bord utilisant Grafana et avoir un serveur Nginx fonctionnel.
 
-Vous pouvez mettre en place cette installation en suivant les tutoriels suivants
+Vous pouvez mettre en place cette installation en suivant les tutoriels suivants :
 
 - [**Mise en place d'un dashboard Grafana**](https://memory.robin-laumonier.org/aides-memoires/dashboard-ressources/)
 - [**Serveur web auto-hébergé**](https://memory.robin-laumonier.org/aides-memoires/serveur-nginx/)
@@ -21,23 +21,23 @@ Vous pouvez mettre en place cette installation en suivant les tutoriels suivants
 
 ## Situation actuelle
 
-Dans notre situation nous avons mis en place un tableau de bord utilisant Grafan qui récupère des métriques sur notre machine et nous permet de les visualiser.
+Dans notre situation nous avons mis en place un tableau de bord utilisant Grafana qui récupère des métriques sur notre machine et nous permet de les visualiser.
 
-Ce tableau de bord est pour l'instant uniquement accéssible sur la machine via le localhost.
+Ce tableau de bord est pour l'instant uniquement accessible sur la machine via le localhost.
 
-Notre but est de rendre ce tableau de bord accéssible via une URL pour pouvoir visualier les données sans être directement sur la machine.
+Notre but est de rendre ce tableau de bord accessible via une URL pour pouvoir visualiser les données sans être directement sur la machine.
 
-Pour ce faire nous allons configurer un proxy inverse (ou *reverse proxy* en anglais) pour rediriger les requètes demandant un certain site vers le localhost de la machine.
+Pour ce faire nous allons configurer un proxy inverse (ou *reverse proxy* en anglais) pour rediriger les requêtes demandant un certain site vers le localhost de la machine.
 
 ---
 
-## Mise en place du proxy inverse (revers proxy)
+## Mise en place du proxy inverse (reverse proxy)
 
-Pour mettre en place nous devons modifier le fichier de configuration Grafana et créer un nouveau site sur le serveur Nginx.
+Pour le mettre en place nous devons modifier le fichier de configuration Grafana et créer un nouveau site sur le serveur Nginx.
 
 ### Grafana
 
-Du coté de Grafana, il y a deux lignes à modifier dans le fichier `/etc/grafana/grafana.ini` :
+Du côté de Grafana, il y a deux lignes à modifier dans le fichier `/etc/grafana/grafana.ini` :
 
 ```ini
 [server]
@@ -49,15 +49,15 @@ root_url = %(protocol)s://%(domain)s/grafana/
 serve_from_sub_path = true
 ```
 
-Ces changements permettent d'avoir accès à Grafan via une URL autre que le localhost et précisent que l'interface peut être accéssible via un sous chemin.
+Ces changements permettent d'avoir accès à Grafana via une URL autre que le localhost et précisent que l'interface peut être accessible via un sous-chemin.
 
 ### Nginx
 
 Pour Nginx, nous devons créer un nouveau site.
 
-A la différence des sites classiques, celui-la n'a pas besoin d'avoir de fichier à afficher. Il existe uniquement pour faire proxy.
+À la différence des sites classiques, celui-là n'a pas besoin d'avoir de fichier à afficher. Il existe uniquement pour faire proxy.
 
-Nous avons donc justa à créer le fichier de configuration et à faire le lien symbolique pour activer le site.
+Nous avons donc juste à créer le fichier de configuration et à faire le lien symbolique pour activer le site.
 
 Fichier de configuration `/etc/nginx/sites-available/dashboard.domaine.org` :
 
@@ -69,7 +69,7 @@ server {
     # Nom de domaine que ce bloc de serveur doit gérer
     server_name dashboard.domaine.org;
 
-    # Comportement pour les requètes 'dashboard.domaine.org/grafana/'
+    # Comportement pour les requêtes 'dashboard.domaine.org/grafana/'
     location /grafana/ {
         # Adresse de redirection
         proxy_pass http://localhost:3000/grafana/;
@@ -88,19 +88,19 @@ Création du lien symbolique :
 sudo ln -s /etc/nginx/sites-available/dashboard.domaine.org /etc/nginx/sites-enabled/
 ```
 
-Vous pouvez maintenant créer l'enregistrement DNS sur votre domaine pour rediriger les requètes `dashboard.domaine.org` vers l'adresse IP de votre routeur internet.
+Vous pouvez maintenant créer l'enregistrement DNS sur votre domaine pour rediriger les requêtes `dashboard.domaine.org` vers l'adresse IP de votre routeur Internet.
 
 ---
 
 ## Mise en place du HTTPS
 
-La mise en place de la connexion HTTPS n'est pas differente des autres sites. Utilisez la commande suivante génèrera un certificat pour le site `dashboard.domaine.org` .
+La mise en place de la connexion HTTPS n'est pas différente des autres sites. Utilisez la commande suivante générera un certificat pour le site `dashboard.domaine.org` .
 
 ```sh
 sudo certbot --nginx -d dashboard.domaine.org
 ```
 
-Une fois le certificat installé, votre fichier de configuration pour le site `dashboard.domaine.org` devrait ressembler à ça :
+Une fois le certificat installé, votre fichier de configuration pour le site `dashboard.domaine.org` devrait ressembler à ceci :
 
 ```txt
 server {
