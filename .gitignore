@@ -1,4 +1,5 @@
 # Fichiers à ignorer par Git
-/content/aides-memoires/fichiers-cours/*.md
+/content/aides-memoires/fichiers-cours/
+/content/aides-memoires/guides/
 /public/
 /resources/
