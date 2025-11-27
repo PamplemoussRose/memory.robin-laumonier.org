@@ -110,11 +110,13 @@ mkdir -p ~/.ssh && chmod 700 ~/.ssh && echo "public_key" >> ~/.ssh/authorized_ke
 
 - `chmod 700 ~/.ssh` : Restreint l’accès au répertoire. Seul l’utilisateur peut lire, écrire, exécuter.
 
-- `echo "COPIEZ_VOTRE_CLÉ_PUBLIQUE_ICI" >> ~/.ssh/authorized_keys` : Ajoute la clé publique au fichier authorized_keys en l’insérant à la fin.
+- `echo "public_key" >> ~/.ssh/authorized_keys` : Ajoute la clé publique au fichier authorized_keys en l’insérant à la fin.
 
 - `chmod 600 ~/.ssh/authorized_keys` : Limite l’accès au fichier aux seules lectures/écritures de l’utilisateur.
 
 Vous pouvez maintenant vous déconnecter de la machine cible.
+
+Si vous prévoyez d'autoriser la connexion d'autres appareils, vous pouvez ajouter leur clé en faisant `echo "public_key" >> ~/.ssh/authorized_keys` car le fichier existe déjà et les permissions ont été données.
 
 ### Test de la connexion par clé
 
