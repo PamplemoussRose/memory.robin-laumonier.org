@@ -206,3 +206,82 @@ Affiche le statut du service donné.
 `SERVICE` : Le nom du service à afficher.
 
 ---
+
+## Information sur la machine
+
+### Gestionnaire de tâche
+
+```sh
+htop
+```
+
+Description :  
+Affiche un équivalent du gestionnaire de tâche dans la console.
+
+### Temps d'activité
+
+```sh
+uptime [ OPTIONS ]
+```
+
+Description :  
+Affiche l'heure de la machine, le temps d'activité, le nombre d'utilisateurs et les moyennes de charge.
+
+Options :
+
+- `-s` : Affiche la date éxacte du dernier démareage
+- `-p` : Mode *pretty*
+
+---
+
+## Chercher un fichier
+
+### Recherche exacte
+
+```sh
+sudo find path [ OPTION ] file
+```
+
+Description :  
+Cherche les fichier correspondant à `file` à partir de `path`.  
+Pour cherhcer à partir de la racine, `path = /`.
+
+Options :
+
+- `-name` : Cherche exactement ce nom
+- `-iname` : Ignore la casse
+
+### Recheeche par motif
+
+```sh
+sudo find / -type f -name [ MOTIF ]
+```
+
+Description :  
+Cherche les fichier correspondant à `MOTIF` à partir de `path`.  
+Pour cherhcer à partir de la racine, `path = /`.
+
+Motif :
+
+- `test*` : Tous les fichiers commençant par 'test'
+- `*test` : Tous les fichiers terminant par 'test'
+- `*test*` : Tous les fichiers ayant 'test' dans leur nom
+
+---
+
+## Informations temporelles
+
+```sh
+timedatectl [ OPTION ]
+```
+
+Description :  
+Affiche les informations concernant les propriétés temporelles de la machine (timezone, heure...).
+
+Options :
+
+- `set-time TIME` : Change l'heure du système. TIME doit être de la forme "YYYY-MM-DD", "HH:MM:SS" ou "YYYY-MM-DD HH:MM:SS".
+- `list-timezones` : Affiche toutes les timezones connues
+- `set-timezone ZONE` : Modifie la timezone du système
+
+---
