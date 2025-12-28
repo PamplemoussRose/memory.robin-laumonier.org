@@ -78,7 +78,7 @@ sudo nano /etc/systemd/system/auto-reboot.timer
 
 ```
 
-Le code suivant permet de programmer l'éxécution tous les dimanches à 13h59. La partie `Persistent=true` indique que l'éxécution se fera au démarrage de la machine si elle est éteinte lors de la date programmée.
+Le code suivant permet de programmer l'éxécution tous les dimanches à 23h59. La partie `Persistent=true` indique que l'éxécution se fera au démarrage de la machine si elle est éteinte lors de la date programmée.
 
 ```timer
 [Unit]

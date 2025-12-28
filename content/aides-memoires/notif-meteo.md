@@ -187,7 +187,7 @@ Le script `meteo_notifier.py` est responsable de la logique.
             case 2 :
                 headers["Tags"] = "sun_behind_large_cloud"
             case 3 :
-                headers["Tags"] = "cloudy"
+                headers["Tags"] = "cloud"
             case 45 | 48 :
                 headers["Tags"] = "fog"
             case 51 | 53 | 55 :
