@@ -149,17 +149,17 @@ Le script `meteo_notifier.py` est responsable de la logique.
         # Construction du message
         message_title = f"Meteo Montreal le {datetime.now().strftime('%d/%m')}"
 
-        if snowfall <= 0 and rain <= 0 :
+        if snowfall = 0 and rain = 0 :
             message_body = (
             f"{interpret_weather_code(weather_code)}\n"
             f"Entre {temperatures_min}°C et {temparatures_max}°C et vent à {wind_speed} km/h."
             )
-        if snowfall > 0 and rain <= 0 :
+        if snowfall > 0 and rain = 0 :
             message_body = (
             f"{interpret_weather_code(weather_code)} avec {snowfall} cm de neige. "
             f"Entre {temperatures_min}°C et {temparatures_max}°C et vent à {wind_speed} km/h."
             )
-        elif snowfall <= 0 and rain > 0 :
+        elif snowfall = 0 and rain > 0 :
             message_body = (
             f"{interpret_weather_code(weather_code)} avec {rain} mm de pluie. "
             f"Entre {temperatures_min}°C et {temparatures_max}°C et vent à {wind_speed} km/h."
@@ -238,7 +238,7 @@ Le script `meteo_notifier.py` est responsable de la logique.
 
     * Remplacez `NOM_DU_TOPIC` par le nom de votre topic secret ntfy.
     * Ajustez `LATITUDE` et `LONGITUDE` si vous ne souhaitez pas les prévisions pour Montréal.
-    * Vérifiez le `timezone` et ajustez-le si nécessaire pour que les heures 8h00 et 14h00 correspondent à l'heure locale de votre machine.
+    * Vérifiez le `timezone` et ajustez-le si nécessaire pour correspondre à l'heure locale de votre machine.
 
 4. **Rendez le script exécutable :**
 
