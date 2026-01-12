@@ -14,7 +14,7 @@ draft: "false" # Set to true if this page is not to be shown
 
 ### Windows
 
-Pour installer ZeroTier sous Windows, allez à l'adresse suivante, téléchargez le fichier d'installation puis éxécutez le.
+Pour installer ZeroTier sous Windows, allez à l'adresse suivante, téléchargez le fichier d'installation puis exécutez le.
 
 <https://www.zerotier.com/download/>
 
@@ -34,13 +34,13 @@ curl -s https://install.zerotier.com | sudo bash
 
 Pour créer un nouveau réseau sur ZeroTier, vous devez aller sur l'interface d'administration en ligne ZeroTier (<https://my.zerotier.com/network>).
 
-Ensuite cliquez sur *Create A Network*. Un nouveau réseau sera apparu et vosu aurrez le code à 16 chiffres unique à ce réseau qui vous permet de rejoindre le dit réseau.
+Ensuite cliquez sur *Create A Network*. Un nouveau réseau apparaîtra et vous aurez le code à 16 chiffres unique à ce réseau qui vous permet de le rejoindre réseau.
 
 ### Rejoindre un réseau sous Windows
 
-Affichez les icones cachées puis cliquez sur ZeroTiers.
+Affichez les icônes cachées puis cliquez sur ZeroTier.
 
-Séléctionnez *Join New Network...* et entrez le code à 16 chiffres de votre réseau créé précédement.
+Sélectionnez *Join New Network...* et entrez le code à 16 chiffres de votre réseau créé précédemment.
 
 ### Rejoindre un réseau sous Linux
 
@@ -50,13 +50,13 @@ Entrez la commande suivante :
 sudo zerotier-cli join <network ID>
 ```
 
-- `<network ID>` est le code à 16 chiffres de votre réseau créé précédement.
+- `<network ID>` est le code à 16 chiffres de votre réseau créé précédemment.
 
-### Accépter un nouvel appareil
+### Accepter un nouvel appareil
 
 Quand un nouvel appareil rejoint votre réseau, il va être *Not authorized*.
 
-Pour l'authoriser à acceder au réseau, vous devez allez sur l'interface d'administration de votre réseau. Ensuite allez dans le détail de l'appareil à autoriser puis cochez la case *Authorized* et cliquez sur *Save*.
+Pour l'authoriser à accéder au réseau, vous devez vous rendre sur l'interface d'administration de votre réseau. Ensuite allez dans le détail de l'appareil à autoriser puis cochez la case *Authorized* et cliquez sur *Save*.
 
 Votre appareil pourra alors communiquer avec les autres machines de votre réseau via les adresses ZeroTier.
 
@@ -84,7 +84,7 @@ sudo zerotier-cli join <network ID>
 
 `<network ID>` est le code à 16 chiffres du réseau
 
-### Quiter un réseau
+### Quitter un réseau
 
 ```sh
 sudo zerotier-cli leave <network ID>
@@ -92,7 +92,7 @@ sudo zerotier-cli leave <network ID>
 
 `<network ID>` est le code à 16 chiffres du réseau
 
-### Afficher la liste des réseaux rejoint
+### Afficher la liste des réseaux rejoints
 
 ```sh
 sudo zerotier-cli listnetworks
@@ -106,12 +106,12 @@ sudo zerotier-cli get <network ID> <setting> #
 
 `<network ID>` est le code à 16 chiffres du réseau
 
-`<setting>` doit avoir une des valeurs suivante :
+`<setting>` doit avoir une des valeurs suivantes :
 
-- `nwid` : caode à 16 chiffre du réseau
+- `nwid` : code à 16 chiffres du réseau
 - `name` : nom du réseau
 - `mac` : adresse mac
 - `status` : statut du réseau
-- `type` : accèssibilité du réseau
+- `type` : accessibilité du réseau
 - `dev` : nom de l'interface réseau
 - `ZT assigned ips` : ip de la machine sur le réseau

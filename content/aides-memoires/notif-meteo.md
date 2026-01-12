@@ -10,7 +10,7 @@ draft: "false" # Set to true if this page is not to be shown
 
 ---
 
-## Architecture du Projet
+## Architecture du projet
 
 Le projet repose sur l'architecture suivante :
 
@@ -19,25 +19,25 @@ Le projet repose sur l'architecture suivante :
 | **Ordonnanceur** | Déclenche l'exécution du script à une heure fixe. | **Cron** (sur Raspberry Pi) |
 | **Moteur** | Script qui récupère, traite les données et envoie la notification. | **Python** avec la librairie `requests` |
 | **Source Météo** | Fournit les données de prévisions. | **Open-Meteo** (API gratuite, sans clé) |
-| **Service de Notification** | Transmet le message push à l'iPhone. | **ntfy.sh** (service push simple avec application iOS native) |
-| **Client** | Reçoit et affiche la notification. | **Application ntfy** (sur votre iPhone) |
+| **Service de Notification** | Transmet le message push à l'Iphone. | **ntfy.sh** (service push simple avec application iOS native) |
+| **Client** | Reçoit et affiche la notification. | **Application ntfy** (sur votre Iphone) |
 
 ---
 
-## Configuration de l'iPhone
+## Configuration de l'Iphone
 
-Pour recevoir les notifications, vous devez configurer l'application `ntfy` sur votre iPhone.
+Pour recevoir les notifications, vous devez configurer l'application `ntfy` sur votre Iphone.
 
 1. **Installation :** Téléchargez et installez l'application `ntfy` depuis l'App Store.
 2. **Abonnement à un topic :** Dans l'application, vous devez vous abonner à un topic qui servira de canal de communication. Ce topic doit être secret pour éviter que d'autres personnes n'envoient des notifications sur votre téléphone.
-Pour ce faire, appuyez sur le boutton + dans l'application, choisissez le nom du topic et appuyez sur `subscribe` pour valider sa création.
-3. **Test du topic :** Vous pouvez testez le topic avec la commande suivante :
+Pour ce faire, appuyez sur le bouton + dans l'application, choisissez le nom du topic et appuyez sur `subscribe` pour valider sa création.
+3. **Test du topic :** Vous pouvez tester le topic avec la commande suivante :
 
 ```sh
 curl -d "hi" ntfy.sh/NOM_DU_TOPIC
 ```
 
-Vous devrez alors recevoir une notifaction sur votre téléphone avec le message `hi` dans le corps de celle-ci.
+Vous devrez alors recevoir une notification sur votre téléphone avec le message `hi` dans le corps de celle-ci.
 
 ---
 
@@ -45,7 +45,7 @@ Vous devrez alors recevoir une notifaction sur votre téléphone avec le message
 
 Nous allons maintenant configurer le Raspberry Pi.
 
-### Installation des Dépendances
+### Installation des dépendances
 
 Le script utilise Python et la librairie `requests` pour les requêtes HTTP. Vous pouvez les installer avec les commandes suivantes.
 
@@ -60,7 +60,7 @@ sudo apt install python3 python3-pip -y
 pip3 install requests
 ```
 
-### Création du Script Python
+### Création du script python
 
 Le script `meteo_notifier.py` est responsable de la logique.
 
@@ -75,11 +75,11 @@ Le script `meteo_notifier.py` est responsable de la logique.
     ```python
     import requests
     import json
-    from datetime import datetime, timedelta
+    from datetime import datetime
 
     # --- Configuration ---
     # Nom du topic ntfy.sh
-    NTFY_TOPIC = "meteo_notifier_polycoloc"
+    NTFY_TOPIC = "NOM_DU_TOPIC"
     # Coordonnées de Montréal (utilisées comme exemple)
     LATITUDE = 45.5017
     LONGITUDE = -73.5673
@@ -113,7 +113,7 @@ Le script `meteo_notifier.py` est responsable de la logique.
 
         daily_data = data['daily']
         weather_code = daily_data['weather_code'][0]
-        temparatures_max = daily_data['temperature_2m_max'][0]
+        temperatures_max = daily_data['temperature_2m_max'][0]
         temperatures_min = daily_data['temperature_2m_min'][0]
         snowfall = daily_data['snowfall_sum'][0]
         rain = daily_data['rain_sum'][0]
@@ -149,25 +149,25 @@ Le script `meteo_notifier.py` est responsable de la logique.
         # Construction du message
         message_title = f"Meteo Montreal le {datetime.now().strftime('%d/%m')}"
 
-        if snowfall = 0 and rain = 0 :
+        if snowfall == 0 and rain == 0 :
             message_body = (
             f"{interpret_weather_code(weather_code)}\n"
-            f"Entre {temperatures_min}°C et {temparatures_max}°C et vent à {wind_speed} km/h."
+            f"Entre {temperatures_min}°C et {temperatures_max}°C avec {wind_speed} km/h de vent."
             )
-        if snowfall > 0 and rain = 0 :
+        elif snowfall > 0 and rain == 0 :
             message_body = (
             f"{interpret_weather_code(weather_code)} avec {snowfall} cm de neige. "
-            f"Entre {temperatures_min}°C et {temparatures_max}°C et vent à {wind_speed} km/h."
+            f"Entre {temperatures_min}°C et {temperatures_max}°C avec {wind_speed} km/h de vent."
             )
-        elif snowfall = 0 and rain > 0 :
+        elif snowfall == 0 and rain > 0 :
             message_body = (
             f"{interpret_weather_code(weather_code)} avec {rain} mm de pluie. "
-            f"Entre {temperatures_min}°C et {temparatures_max}°C et vent à {wind_speed} km/h."
+            f"Entre {temperatures_min}°C et {temperatures_max}°C avec {wind_speed} km/h de vent."
             )
         else :
             message_body = (
             f"{interpret_weather_code(weather_code)} avec {rain} mm de pluie et {snowfall} cm de neige. "
-            f"Entre {temperatures_min}°C et {temparatures_max}°C et vent à {wind_speed} km/h."
+            f"Entre {temperatures_min}°C et {temperatures_max}°C avec {wind_speed} km/h de vent."
             )
 
         return message_title, message_body, weather_code
@@ -209,7 +209,7 @@ Le script `meteo_notifier.py` est responsable de la logique.
             return True
         except requests.exceptions.RequestException as e:
             print(f"Erreur lors de l'envoi de la notification ntfy : {e}")
-            print("Vérifiez que votre NTFY_TOPIC est correct et que vous êtes abonné sur votre iPhone.")
+            print("Vérifiez que votre NTFY_TOPIC est correct et que vous êtes abonné sur votre Iphone.")
             return False
 
     def main() -> None:
@@ -246,15 +246,15 @@ Le script `meteo_notifier.py` est responsable de la logique.
     chmod +x meteo_notifier.py
     ```
 
-### Test du Script
+### Test du script
 
-Exécutez le script manuellement pour vérifier qu'il fonctionne et que vous recevez la notification sur votre iPhone :
+Exécutez le script manuellement pour vérifier qu'il fonctionne et que vous recevez la notification sur votre Iphone :
 
 ```sh
 python3 meteo_notifier.py
 ```
 
-Si tout est correct, vous devriez voir un message de succès dans le terminal et recevoir une notification sur votre iPhone.
+Si tout est correct, vous devriez voir un message de succès dans le terminal et recevoir une notification sur votre Iphone.
 
 ---
 
@@ -265,7 +265,7 @@ Pour que le script s'exécute tous les matins, nous allons utiliser l'ordonnance
 1. Créez un fichier pour stocker les logs et donnez les permissions en écriture :
 
     ```sh
-    # Creation du fichier
+    # Création du fichier
     touch meteo_log.txt
 
     # Mise à jour des permissions
@@ -289,6 +289,6 @@ Pour que le script s'exécute tous les matins, nous allons utiliser l'ordonnance
     * `meteo_notifier.py` : Chemin complet vers votre script.
     * `meteo_log.txt 2>&1` : Redirige la sortie standard et les erreurs vers un fichier de log, ce qui est crucial pour le débogage des tâches cron.
 
-Le système est maintenant entièrement configuré. Chaque matin à 6h30, votre Raspberry Pi exécutera le script, récupérera les prévisions météo pour 8h et 14h, et vous enverra une notification push sur votre iPhone.
+Le système est maintenant entièrement configuré. Chaque matin à 6h30, votre Raspberry Pi exécutera le script, récupérera les prévisions météo du jour, et vous enverra une notification push sur votre Iphone.
 
 ---

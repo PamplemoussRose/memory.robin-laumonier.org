@@ -1,6 +1,6 @@
 ---
-title: "Redemarrage automatique Linux"
-summary: "Mise en place d'un redemarrage automatique sur une machine Linux."
+title: "Redémarrage automatique Linux"
+summary: "Mise en place d'un redémarrage automatique sur une machine Linux."
 date: "2025-12-19"
 categories: ["tuto"]
 tags: ["linux", "shell"]
@@ -25,16 +25,16 @@ Ajoutez le code suivant :
 reboot
 ```
 
-Vous pouvez également ajouter d'autre commande à faire avec le démarrage :
+Vous pouvez également ajouter d'autre commandes à faire avec le démarrage :
 
 ```sh
 #!/bin/bash
-apt update -y   # Vérifie si des mises à jours sont disponibles
-apt upgrade -y  # Met les packets à jour
-reboot          # Redémarre le machine une fosi les mises à jours terminées
+apt update -y   # Met à jour la liste des paquets
+apt upgrade -y  # Met les paquets à jour
+reboot          # Redémarre la machine une fois les mises à jours terminées
 ```
 
-Vosu devez ensuite rendre le script executable :
+Vous devez ensuite rendre le script exécutable :
 
 ```sh
 sudo chmod +x /usr/local/bin/reboot.sh
@@ -44,9 +44,9 @@ sudo chmod +x /usr/local/bin/reboot.sh
 
 ## Automatisation du redémarrage
 
-Pour finir nous devons automatiser l'éxécution du script.
+Pour finir, nous devons automatiser l'exécution du script.
 
-### Création su service
+### Création du service
 
 Pour commencer, vous devez créer un service qui va éxécuter votre script :
 
@@ -55,7 +55,7 @@ sudo nano /etc/systemd/system/auto-reboot.service
 
 ```
 
-Ensuite ahoutez le code suivant :
+Ensuite ajoutez le code suivant :
 
 ```service
 [Unit]
@@ -66,19 +66,19 @@ Type=oneshot
 ExecStart=/usr/local/bin/reboot.sh
 ```
 
-La partie `Type=oneshot` indique que le service est à éxécuter une seul fois.  
+La partie `Type=oneshot` indique que le service est à éxécuter une seule fois.  
 Vous pouvez également personnaliser la description.
 
 ### Création du timer
 
-Une fois le service créé, vous devez créer le imer qui rendera l'éxécution automatique.
+Une fois le service créé, vous devez créer le timer qui rendera l'éxécution automatique.
 
 ```sh
 sudo nano /etc/systemd/system/auto-reboot.timer
 
 ```
 
-Le code suivant permet de programmer l'éxécution tous les dimanches à 23h59. La partie `Persistent=true` indique que l'éxécution se fera au démarrage de la machine si elle est éteinte lors de la date programmée.
+Le code suivant permet de programmer l'exécution tous les dimanches à 23h59. La partie `Persistent=true` indique que l'éxécution se fera au démarrage de la machine si elle est éteinte à la date programmée.
 
 ```timer
 [Unit]

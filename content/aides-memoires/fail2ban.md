@@ -1,6 +1,6 @@
 ---
-title: "Instalation de Fail2Ban"
-summary: "Tutoriel pour mettre en place le packet fail2ban"
+title: "Installation de Fail2Ban"
+summary: "Tutoriel pour mettre en place le paquet fail2ban"
 date: "2025-12-28"
 categories: ["tuto"]
 tags: ["fail2ban", "connexion", "log"]
@@ -13,11 +13,11 @@ draft: "false" # Set to true if this page is not to be shown
 Pour installer `fail2ban`, il suffit d'exécuter les commandes suivantes :
 
 ```sh
-sudo apt update             # Met à jour le gestionnaire de paquets
-sudo apt install fail2ban   # Installe fail2ban
-systemd start fail2ban      # Démarre fail2ban
-systemd enable fail2ban     # Ajoute fail2ban au démarrage automatique
-systemctl status fail2ban   # Affiche le statut de fail2ban
+sudo apt update               # Met à jour le gestionnaire de paquets
+sudo apt install fail2ban     # Installe fail2ban
+systemctl start fail2ban      # Démarre fail2ban
+systemctl enable fail2ban     # Ajoute fail2ban au démarrage automatique
+systemctl status fail2ban     # Affiche le statut de fail2ban
 ```
 
 Si vous avez `Active: failed` avec les erreurs  
@@ -46,10 +46,10 @@ Une fois le correctif appliqué et `fail2ban` redémarré, vous devriez avoir `A
 
 ## Configuration
 
-Tous les changements de configurations doivent être fait dans le fichier `jail.local`.  
-Il n'est pas recommandé de les faire dans le fichier `jail.conf` car celui-ci peut être écrasé lors d'une mise à jour du packet.
+Tous les changements de configurations doivent être faits dans le fichier `jail.local`.  
+Il n'est pas recommandé de les faire dans le fichier `jail.conf` car celui-ci peut être écrasé lors d'une mise à jour du paquet.
 
-La directive `ignoreop` permet de définir les IP qui ne sont pas concernées par le contrôle.
+La directive `ignoreip` permet de définir les IP qui ne sont pas concernées par le contrôle.
 
 ```txt
 ignoreip = 127.0.0.1 124.32.5.48
@@ -76,20 +76,20 @@ La directive `maxretry` définit le nombre maximum de tentatives de connexion av
 maxretry = 5
 ```
 
-La directive `backend` définit le système utiliser pour avoir les logs.  
+La directive `backend` définit le système utilisé pour récupérer les logs.  
 Les options sont :
 
-- `pyinotify`(Nécéssite d'avoir `pyinotify` d'installer)
-- `gamin` (Nécéssite d'avoir `gamin` d'installer)
+- `pyinotify` (Nécessite d'avoir `pyinotify` d'installé)
+- `gamin` (Nécessite d'avoir `gamin` d'installé)
 - `polling`
-- `auto`(Va essayer d'utiliser les otpions ci-dessus dans l'ordre `pyinotify`, `gamin`, `polling`.)
+- `auto` (Essaiera d’utiliser les options ci-dessus dans l'ordre `pyinotify`, `gamin`, `polling`.)
 - `systemd`
 
 ```txt
 backend = systemd
 ```
 
-Après avoir modifié le fichier de configuration, vous dever rédemarrer `fail2ban` pour que les changements soient pris en compte.
+Après avoir modifié le fichier de configuration, vous devez redémarrer `fail2ban` pour que les changements soient pris en compte.
 
 ```sh
 sudo systemctl restart fail2ban
@@ -97,15 +97,15 @@ sudo systemctl restart fail2ban
 
 ---
 
-## Informations sur les prisons
+## Informations sur les jails (prisons)
 
-Liste des prisons :
+Liste des jails :
 
 ```sh
 sudo fail2ban-client status
 ```
 
-Détail d'une prison :
+Détail d'une jail :
 
 ```sh
 sudo fail2ban-client status [NOM_PRISON]
@@ -113,7 +113,7 @@ sudo fail2ban-client status [NOM_PRISON]
 
 ---
 
-## Bannissement et dé-bannissement manuel
+## Bannissement et débannissement manuel
 
 Bannir une IP :
 
