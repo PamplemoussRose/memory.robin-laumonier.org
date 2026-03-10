@@ -91,6 +91,21 @@ Objets :
 
 ---
 
+## Test de connexion
+
+```sh
+ping [ OPTION ] adesse
+```
+
+Description :  
+Envoi un paquet vers l'adresse donnée et regarde la reponse
+
+Options :
+
+- `-n X` : envoi X paquets pour faire le test
+
+---
+
 ## Copier
 
 ```sh
