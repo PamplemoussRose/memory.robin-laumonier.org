@@ -2,7 +2,7 @@
 title: "Enterprise Security Architecture"
 summary: "Compilations des points importants du livre 'Enterprise Security Architecture: A Business-Driven Approach' par John Sherwood"
 date: "2026-01-16"
-categories: ["memo"]
+categories: ["mémo"]
 tags: ["cyber-secu", "architecture", "livre"]
 layout: "page"
 draft: "false" # Set to true if this page is not to be shown
