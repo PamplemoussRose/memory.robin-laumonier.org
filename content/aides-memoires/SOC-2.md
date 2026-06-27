@@ -1,6 +1,6 @@
 ---
 title: "Rapport SOC 2"
-summary: "Guide sur le Rapport SOC 2 avec explication de chaque critères et exemples d'actions pour chacune d'eux."
+summary: "Guide sur le Rapport SOC 2 avec explication de chaque critères et exemples d'actions pour chacun d'eux."
 date: "2026-03-10"
 categories: ["mémo"]
 tags: ["cyber-secu", "norme", "soc"]

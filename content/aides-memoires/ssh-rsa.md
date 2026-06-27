@@ -62,7 +62,7 @@ Vous pouvez vous déconnecter en tapant `exit` dans le terminal.
 
 En suivant les étapes précédentes, vous avez mis en place une connexion ssh entre deux machines. L'étape suivante est de sécuriser la connexion.
 
-Pour ce faire nosu allons mettre en place une connexion par clé RSA. Lors de la connexion SSH, le serveur ne va plus vous demander le mot de passe de l'utilisateur utilisé pour la connexion mais va plutôt regarder si vous possédez la clé privée correspondante à la clé publique qui est enregistrée.
+Pour ce faire nous allons mettre en place une connexion par clé RSA. Lors de la connexion SSH, le serveur ne va plus vous demander le mot de passe de l'utilisateur utilisé pour la connexion mais va plutôt regarder si vous possédez la clé privée correspondante à la clé publique qui est enregistrée.
 
 ### Générer les clés
 
@@ -153,5 +153,22 @@ sudo systemctl restart ssh
 ```
 
 Votre serveur n'accepte maintenant que les connexions d'appareil ayant une clé correspondante à l'une de celles enregistrées.
+
+---
+
+## Sauvegarder des hosts
+
+Pour faciliter la connexion ssh, vous pouvez paramétrer des hosts.
+
+Pour ce faire, créez un fichier `config` dans le dossier `.ssh` puis ajoutez vos hosts comme suit :
+
+```txt
+Host nom_host
+    HostName adresse_ip
+    User nom_utilisateur
+    IdentityFile chemin_de_la_clé_privé
+```
+
+Une fois le fichier enregistré, vous pourrez vous connecter à la machine avec la commande `ssh nom_host`.
 
 ---
