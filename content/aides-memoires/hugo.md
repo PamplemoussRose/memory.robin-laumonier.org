@@ -3,7 +3,7 @@ title: "Tutoriel Hugo avec Blowfish"
 summary: "Tutoriel d'installation et de configuration pour créer un site avec Hugo."
 date: "2025-11-18"
 categories: ["tuto"]
-tags: ["hugo", "blowfish", "markdown", "site web"]
+tags: ["site web", "framework", "markdown", "hugo", "blowfish"]
 layout: "page"
 draft: "false" # Set to true if this page is not to be shown
 ---

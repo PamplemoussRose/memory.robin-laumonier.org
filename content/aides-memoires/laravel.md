@@ -3,7 +3,7 @@ title: "Site web en utilisant Laravel"
 summary: "Tutoriel pour créer un site web en se basant sur le framework Laravel"
 date: "2026-07-07"
 categories: ["tuto"]
-tags: ["site web", "php", "laravel"]
+tags: ["site web", "framework", "php", "laravel"]
 layout: "page"
 draft: "false" # Set to true if this page is not to be shown
 ---
@@ -349,7 +349,7 @@ Voici une liste non-hexaustive des directives les plus courantes :
 @endswitch
 ```
 
-### UNLESS
+#### UNLESS
 
 `@unless` est une directive qui est équivalente à `@if(! condition)` :
 
@@ -359,7 +359,7 @@ Voici une liste non-hexaustive des directives les plus courantes :
 @endunless
 ```
 
-### FORELSE
+#### FORELSE
 
 `@forelse` est une directive qui permet de gérer des cas spécifiques du contenant à parcourir.
 
@@ -371,7 +371,7 @@ Voici une liste non-hexaustive des directives les plus courantes :
 @endforelse                     // Fin de la boucle
 ```
 
-### Control de droit
+#### Control de droit
 
 Il y a également des directives pour vérifier le status et les permissions de l'utilisateur avant de faire ce qui est dans la directive :
 
@@ -380,5 +380,73 @@ Il y a également des directives pour vérifier le status et les permissions de 
 - `@guest/@endguest`                : Regarde si l'utilisateur n'est pas connecté
 - `@guest(role)/@endguest`          : Regarde si l'utilisateur n'est pas connecté au rôle `role`
 - `@can(action, variable)/@endcan`  : Vérifie si l'utisateur à les droits pour faire `action` sur `variable`
+
+---
+
+### Formulaires
+
+#### Construction
+
+La construction des formulaire n'ai rien de different comparé à du html classique. On retrouve la même balise `<script></script>`, le concept de champs et de bouton de validation.
+
+#### Sécurité
+
+Laravel integre par défaut une protection contre les CSRF (Cross-Site Request Forgery) qui se fait en intégrant un token au formulaire. Lors de la validation du formulaire, le serveur va vérifier si le token est compatible avec celui du serveur. En cas de token non valide, une erreur va être remontée et le formulaire ne va pas être traité. Si le token est valide, les données vont être traitée normalement.
+
+Pour inclure le token de vérification, il suffit d'ajouter la directive `@csfr` au fomulaire.
+
+#### Validation du formulaire
+
+Pour que le formulaire soit traité, nous devons ajouter une route vers l'adresse et avec la méthode utilisée par le formuilaire.
+
+Cela se fait comme l'ajout de route classiques dans le fichier `web.php` :
+
+```php
+Route::post('/form', function () {
+    // code à ajouter
+    return redirect('/form'); // Redirection apres le traitement des données
+});
+```
+
+Avant de récupérer les données soumises, nous allons vérifer que le formulaire envoie bien les données.
+
+Pour ce faire, nous allons utiliser la methode `dd` qui permet de dump ce qui lui est passé en parametre sur la page.
+
+```php
+Route::post('/form', function () {
+    dd("Sanity check");
+});
+```
+
+Si tout fonctionne correctement le resultat est :
+
+```php
+"Sanity check" // routes\web.php:37
+```
+
+#### Récupération des données
+
+Pour récupérer les données, il y a plusieurs methodes utilisables :
+
+```php
+Route::post('/form', function () {
+    // Récupère tous les champs
+    request()=>all()
+    // Récupère le champs 'field'
+    $field = request('field')
+    // ajouter `use Illuminate\Support\Facades\Request;` au debut du fichiers
+    $field = Request::input('field')
+});
+```
+
+ Ou encore :
+
+```php
+// ajouter `use Illuminate\Http\Request;` au debut du fichier
+Route::post('/form', function (Request $request) {
+    $request->input('field');
+    $request->field;
+});
+```
 
 ---
