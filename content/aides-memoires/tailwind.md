@@ -3,7 +3,7 @@ title: "Tailwind CSS"
 summary: "Mémo pour les équivalances entre les classes Tailwind et les styles CSS classiques"
 date: "2026-07-08"
 categories: ["mémo"]
-tags: ["site web", "tailwind", "css"]
+tags: ["site web", "framework", "tailwind", "css"]
 layout: "page"
 draft: "false" # Set to true if this page is not to be shown
 ---
