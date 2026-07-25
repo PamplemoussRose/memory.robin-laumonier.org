@@ -252,6 +252,62 @@ Ou avec des variables :
 </html>
 ```
 
+Il est également possible d'ajouter des emplacements pour du code css ou javascript qui doit être ajouter sur une page unique.
+
+Pour ce faire nous allons placer des variables qui seront vide par défaut dans le layout et les assoscier à du code lors de la construction de la page si besoins.
+
+Code du fichier `layout.blade.php` :
+
+```php
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{$title}}</title>
+    <link rel="stylesheet" href="/app.css">
+    {{ $styles ?? '' }}
+    <script src="/app.js"></script>
+</head>
+<body>
+<main>
+    {{$slot}}
+    {{ $scripts ?? '' }}
+</main>
+</body>
+</html>
+```
+
+Code de la page utilisant le layout :
+
+```php
+<x-layout title="Titre">
+
+    // Code de la page
+
+    <x-slot:styles>
+        // CSS pris en compte uniquement sur cette page
+    </x-slot:styles>
+
+    <x-slot:scripts>
+        // Javascript pris en compte uniquement sur cette page
+    </x-slot:scripts>
+</x-layout>
+
+```
+
+#### Composants généraux
+
+En dehors du layout, il est possible de créer autant de composant que voulu. Il suffit de les appeller selon leurs nom comme le composant layout avec les balises `<x-nom-composant></x-nom-composant>`.
+
+Vous pouvez aussi les organiser dans des dossier. Pour appeller des composant dans des dossier, tapez le chemin pour accéder au composant après le `x-` dans la balise :
+
+```php
+<x-dossier.nom-composant>
+    // Code inséré à la place de la variable $slot si présente
+</x-dossier.nom-composant>
+```
+
 ### Passer des données à une vue
 
 Lors du chargement d'une vue, il est possible de lui donner des données à utiliser.
@@ -505,10 +561,6 @@ return new class extends Migration
 };
 ```
 
-{{< alert >}}
-**Attention !** Si vous voulez utilisez Eloquent, mettez le nom de la base de données au pluriel car lors de la requetes, Eloquent prend le nom du model et cherche une base de données avec ce nom au pluriel (Si le model est `Point.php`, Eloquent va chercher une table nommée `points` dans la base de données).
-{{< /alert >}}
-
 La méthode `up` sert à créer et mettre à jour les tables tandis que la méthode `down` sert à annuler les modifications faites par `up`.
 
 Il est possible de gérer plusieurs tables dans le même fichier migration :
@@ -701,6 +753,12 @@ class Post extends Model
 }
 ```
 
+Vosu pouvez spécifier la table à laquelle est relié le model avec la ligne suivante :
+
+```php
+protected $table = 'nom_table';
+```
+
 Les attributs des models Eloquent peuvent être mis dans deux catégories :
 
 - `$guarded` : catégiorie par défaut des attibuts, elle bloque l'assignation de masse
@@ -718,6 +776,56 @@ class Post extends Model
         // attributs à liberer
     ];
 }
+```
+
+#### Controllers
+
+Pour utiliser facilement les models, il est recommander de passer par des controllers.
+
+Les controllers sont des objets qui vont contenir les methodes utiles à la manipulation de la ressource assossiée.
+
+```php
+namespace App\Http\Controllers;
+
+use App\Models\Post;
+use Illuminate\Http\Request;
+
+class PostController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+    }
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Haltes_cyclable $halte_cyclable)
+    {
+        //
+    }
+
+    // Les autres méthodes sont à la suite
+}
+```
+
+Pour être complet, un controller doit avoir les méhtodes `index`, `create`, `store`, `show`, `edit`, `update` et `destroy` qui servent respectivement à récupérer toutes les données de la table, affichier la page pour ajouter une linge, ajouter une ligne dans la base de données, récupérer les informations d'une ligne précise, affichier la page de modification d'une ligne, modifier une ligne dans la base de données et supprimer une ligne dans la base de données.
+
+Une fois les méthodes crées, il est possible des les appeller dans les routes du site en reliant un chemin à une des méthodes du controller.
+
+Par exemple, pour afficher tous les posts, nous allons lier la méthode `index` au chemin `/post` de la manière suivante :
+
+```php
+Route::get('/post', [PostController::class, 'index']);
 ```
 
 #### SELECT
@@ -891,12 +999,15 @@ Les pages dans le dossier `resource/view` sont des pages classques, celles dans 
 
 Les pages dans le dernier cas devront être référencée via `post.nom_page` pour lier la vue à une adresse.
 
+### 
 
 
 
 ---
 
-### Leaflet
+### Intégration de cartes
+
+#### Code général
 
 Créer une table pour contenir les points dans la base de données :
 
@@ -910,8 +1021,8 @@ Dans le fichier `database\migrations\XXX_create_points_table.php`, ajouter les c
 Schema::create('points', function (Blueprint $table) {
     $table->id();
     $table->string('name');
-    $table->double('lat');
-    $table->double('lng');
+    $table->decimal('lat', 10, 7);
+    $table->decimal('lng', 10, 7);
     $table->timestamps();
 });
 ```
@@ -944,17 +1055,35 @@ Créer un controleur pour les points dans le fichier `app/Http/Controllers/Point
 namespace App\Http\Controllers;
 
 use App\Models\Point;
+use Illuminate\Http\JsonResponse;
 
 class PointController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
-        return Point::select('id', 'name', 'lat', 'lng')->get();
+        return response()->json(
+            Point::select('id', 'name', 'lat', 'lng')->get()
+        );
+    }
+
+    public function map()
+    {
+        $points = Point::select('id', 'name', 'lat', 'lng')->get();
+
+        return view('map', compact('points'));
     }
 }
 ```
 
-Ajouter les routes API au projet avec la commande `php artisan install:api` puis ajouter une route pour recupérer les points :
+Ajouter la route pour charger la page dans `routes/api.php` :
+
+```php
+use App\Http\Controllers\PointController;
+
+Route::get('/carte', [PointController::class, 'map'])->name('map');
+```
+
+Ajouter les routes API au projet avec la commande `php artisan install:api` puis ajouter une route dans `routes/api.php` pour recupérer les points :
 
 ```php
 use App\Http\Controllers\PointController;
@@ -962,34 +1091,179 @@ use App\Http\Controllers\PointController;
 Route::get('/points', [PointController::class, 'index']);
 ```
 
-Dans la page qui doit contenir la page, ajoutez le code suivant :
+Dans le fichier de layout (`layout-page.blade.php`), ajouter deux emplacements pour les styles et les scripts :
 
 ```php
-<!--- Div contenant la carte --->
-<div id="map" class="w-full h-[600px]"></div>
+<!DOCTYPE html>
+<html>
+<head>
+    ...
+    {{ $styles ?? '' }}
+</head>
+<body>
+    {{ $slot }}
 
-<!--- Scripts pour peupler et le fonctionnement de la carte --->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const map = L.map('map').setView([46.6, 2.5], 6);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
-
-        fetch('/api/points')
-            .then(res => res.json())
-            .then(points => {
-                points.forEach(p => {
-                    L.marker([p.lat, p.lng])
-                        .addTo(map)
-                        .bindPopup(p.name);
-                });
-            });
-    });
-</script>
+    {{ $scripts ?? '' }}
+</body>
+</html>
 ```
+
+`{{ $styles ?? '' }}` doit être placé dans le `<head>`, `{{ $scripts ?? '' }}` juste avant `</body>`. 
+
+Vérifier que les fichiers pour les marqueurs et clusters sont bien présents dans le dossier d'image :
+
+- `public/img/marina-marker.png`
+- `public/img/cluster.png`
+
+#### Leaflet
+
+Pour leaflet, ajoutez le code suivant dans la vue qui doit contenir la carte :
+
+```php
+<x-layout-page title="Carte">
+
+    <x-slot:styles>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    </x-slot:styles>
+
+    <div id="map" style="width:100%;height:600px;"></div>
+
+    <x-slot:scripts>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+        <script>
+          const markerData = @json($points);
+
+          const map = L.map('map').setView([46.5, 2.5], 6);
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors',
+          }).addTo(map);
+
+          const markerIcon = L.icon({
+            iconUrl: '/img/marina-marker.png',
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+          });
+
+          const clusterGroup = L.markerClusterGroup({
+            iconCreateFunction: function (cluster) {
+              return L.divIcon({
+                html: `<div style="position:relative;width:48px;height:48px;">
+                         <img src="/img/cluster.png" style="width:48px;height:48px;" />
+                         <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:12px;font-weight:bold;">
+                           ${cluster.getChildCount()}
+                         </span>
+                       </div>`,
+                className: '',
+                iconSize: [48, 48],
+              });
+            },
+          });
+
+          markerData.forEach((point) => {
+            const marker = L.marker([point.lat, point.lng], { icon: markerIcon });
+            marker.bindPopup(point.name);
+            clusterGroup.addLayer(marker);
+          });
+
+          map.addLayer(clusterGroup);
+        </script>
+    </x-slot:scripts>
+
+</x-layout-page>
+```
+
+Les paramêtres comme le centre, le zoom ou les couleurs par defaut de la carte sont à configurer selon votre besoin.
+
+#### Google Maps
+
+Pour Google Maps, il faut d'abord enregistrer la clé API pour utiliser l'API Google :
+
+Ajoutez la clé avec les variables d'environelent dans le fichier `.env` :
+
+```txt
+GOOGLE_MAPS_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+Ajoutez l'API Google aux services utilisés par l'application dans le fichier `config/services.php` :
+
+```php
+'google_maps' => [
+    'key' => env('GOOGLE_MAPS_API_KEY'),
+],
+```
+
+Ensuite, ajoutez le code suivant dans la vue qui doit contenir la carte :
+
+```php
+<x-layout-page>
+
+    <div id="map" style="width:100%;height:600px;"></div>
+
+    <x-slot:scripts>
+        <script>
+          window.markerData = @json($points);
+        </script>
+        <script>
+          function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+              zoom: 6,
+              center: { lat: 46.5, lng: 2.5 },
+            });
+
+            const markers = window.markerData.map((point) => {
+              const marker = new google.maps.Marker({
+                position: { lat: point.lat, lng: point.lng },
+                icon: {
+                  url: "/img/marina-marker.png",
+                  scaledSize: new google.maps.Size(32, 32),
+                },
+                title: point.name,
+              });
+
+              const infowindow = new google.maps.InfoWindow({
+                content: point.name,
+              });
+              marker.addListener("click", () => infowindow.open(map, marker));
+
+              return marker;
+            });
+
+            new markerClusterer.MarkerClusterer({
+              map,
+              markers,
+              renderer: {
+                render: ({ count, position }) =>
+                  new google.maps.Marker({
+                    position,
+                    icon: {
+                      url: "/img/cluster.png",
+                      scaledSize: new google.maps.Size(48, 48),
+                    },
+                    label: {
+                      text: String(count),
+                      color: "#ffffff",
+                      fontSize: "12px",
+                    },
+                  }),
+              },
+            });
+          }
+        </script>
+        <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+        <script
+          src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.key') }}&callback=initMap"
+          async
+          defer
+        ></script>
+    </x-slot:scripts>
+
+</x-layout-page>
+```
+
+Les paramêtres comme le centre, le zoom ou les couleurs par defaut de la carte sont à configurer selon votre besoin.
 
 ---
