@@ -51,15 +51,19 @@ Voir toute la documentation et les composants DaisyUI à l'adresse suivante :
 
 ### DaisyUI pour le developpement
 
-Pour inclure le CDN DaisyUI à notre projet, nous devons ajouter la ligne suivante entre les balises `<head>` des pages :
+Pour inclure le CDN DaisyUI à notre projet, nous devons ajouter les lignes suivantes entre les balises `<head>` des pages :
 
 ```php
 // Ajouter DaisyUI
 <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-// Ajouter les thèmes mis à disposition par DaisyUI
+// Ajouter tous les thèmes mis à disposition par DaisyUI
 <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
 ```
+
+{{< alert >}}
+**Attention !** Si vous prévoyez d'utiliser un thème personnalisé, n'ajoutez pas les thèmes DaisyUI et passez à la section [**Créer des thèmes DaisyUI**](#créer-des-thèmes-daisyui) !
+{{< /alert >}}
 
 Les styles DaisyUI sont construits avec les classes Tailwind. Nous retrouvons donc le CDN Tailwind dans les choses à inclure.
 
@@ -71,17 +75,26 @@ Ensuite, nous pouvons utiliser les classes Tailwind normalement dans notre code 
 
 
 
-### Personnaliser et créer des thèmes DaisyUI
+### Créer des thèmes DaisyUI
 
 DaisyUI propose de personnaliser les thèmes existant ou d'en créer un nouveau pour utiliser nos propres couleurs.
-
-
-
-
 
 Il est possible de choisir les couleurs du thème en passant par l'UI du site de DaisyUI :  
 [**https://daisyui.com/theme-generator**](https://daisyui.com/theme-generator)
 
-Utiliser DaisyUI ne nosu empêche pas d'utiliser les classes Tailwind pour affiner la personnalisation de nos composants !
+Ajouter un thème personnalisé est différent si vous êtes en dev ou en prod.
+
+En dev, allez dans votre fichier CSS et ajoutez les lignes suivantes en adaptant le nom de votre thème:
+
+```css
+:root:has(input.theme-controller[value=mytheme]:checked),[data-theme="mytheme"] {
+    /* mytheme est le nom du thème personnalisé */
+    color-scheme: light;
+    --color-base-100: oklch(98% 0.02 240);
+    /* ... reste des couleurs choisies pour le thème */
+}
+```
+
+Utiliser DaisyUI ne nous empêche pas d'utiliser les classes Tailwind pour affiner la personnalisation de nos composants !
 
 ---
