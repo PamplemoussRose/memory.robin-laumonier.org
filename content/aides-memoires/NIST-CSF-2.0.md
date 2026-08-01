@@ -31,7 +31,7 @@ Le cœur du framework est organisé autour de **6 Fonctions** clés (contre 5 da
 
 ## Détail des Fonctions et Actions Concrètes
 
-### 1. GOVERN (Gouverner) - *La Nouveauté 2.0*
+### 1. GOVERN (Gouverner)
 
 **Importance :** Cette fonction souligne que la cybersécurité est un enjeu de direction et non seulement technique. Elle couvre la stratégie, la gestion des risques tiers et les politiques.
 
