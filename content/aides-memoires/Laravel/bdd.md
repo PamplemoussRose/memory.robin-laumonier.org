@@ -1,7 +1,7 @@
 ---
 title: "Base de données"
 summary: "Fonctionnement et construction de la base de données pour le site"
-date: "2026-07-27"
+date: "2026-07-28"
 categories: ["tuto"]
 tags: ["site web", "framework", "php", "laravel"]
 layout: "page"

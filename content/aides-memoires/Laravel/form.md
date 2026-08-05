@@ -1,7 +1,7 @@
 ---
 title: "Construction d'un formulaire"
 summary: "Fonctionnement et construction de formulaire pour le site"
-date: "2026-07-28"
+date: "2026-07-25"
 categories: ["tuto"]
 tags: ["site web", "framework", "php", "laravel"]
 layout: "page"
