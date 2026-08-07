@@ -133,7 +133,7 @@ class SessionsController extends Controller
 }
 ```
 
-Lors de la redirection après la connexion, la méthode `->intended()` redirige vers la page que l'utilisateur essaiyait d'atteindre sans être connecté. Si l'utilisateur vse connectait simplement, il va être redirigé vers la route par défaut aui est entre parenthèses.
+Lors de la redirection après la connexion, utiliser `return redirect()->intended()` redirige vers la page que l'utilisateur essaiyait d'atteindre sans être connecté. Si l'utilisateur se connectait simplement, il va être redirigé vers la route par défaut aui est entre parenthèses.
 
 Les routes de connexions auront le format suivant :
 
@@ -170,6 +170,68 @@ Et la vue de connexion sera un formulaire comme suit :
 
 ---
 
-##
+## Accès aux pages demmendant une connexion
+
+Certaines pages de l'application ne vont pouvoir être accessible uniquement si l'utilisateur est connecté.
+
+Pour gérer ce cas de figure, Laravel porpose d'utiliser un `middleware` qui va nous permetre de rediriger les requêtes vers la page de connexion :
+
+```php
+Route::get('/post', [PostsController::class, 'index'])->middleware('auth');
+```
+
+Si vous avez plusieurs pages qui ne sont pas accessibles sans connexion, vous pouvez regrouper les routes de la façon suivante :
+
+```php
+Route::middleware('auth')->group(function () {
+
+    // Toutes les routes accessibles uniquement si utilisateur connectés
+
+    // ex :
+    Route::get('/post', [PostController::class, 'index']);
+    Route::get('/post/create', [PostController::class, 'create']);
+    // ...
+
+});
+```
+
+Il est possible de faire la même chose avec `guest` pour les pages accessibles uniquement en tant qu'invité :
+
+```php
+Route::middleware('guest')->group(function () {
+    // Toutes les routes accessibles uniquement si utilisateur non connectés
+});
+```
+
+Avec l'utilisation de la méthode `auth`, le middleware va chercher une URL assossiée au nom de route "login" et rediriger l'utilisateur.
+
+Pour assossier une URL, il y a deux méhodes :
+
+- Ajouter la l'URL dans le fichier `bootstrap\app.php` :
+
+```php
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        web: __DIR__.'/../routes/web.php',
+        api: __DIR__.'/../routes/api.php',
+        commands: __DIR__.'/../routes/console.php',
+        health: '/up',
+    )
+    ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->redirectGuestsTo('/login');
+        $middleware->redirectGuestsTo('/home');
+    })
+    ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->shouldRenderJsonWhen(
+            fn (Request $request) => $request->is('api/*'),
+        );
+    })->create();
+```
+
+- Assossier la route vers la page de connexion au nom "login" dans le fichier `routes\web.php`
+
+```php
+Route::get('/login', [SessionsController::class, 'create'])->name('login');
+```
 
 ---

@@ -109,6 +109,11 @@ Schema::create('posts', function (Blueprint $table) {
         ->on('users')           // Table distante
         ->onUpdate('cascade')   // Propagation des mises à jours
         ->onDelete('cascade');  // Propagation des suppressionss
+
+    // OU
+
+    $table->foreignIdFor(User::class)->constained()->cascadeOnDelete();
+    // Cette methode ne fonctionne qu'avec les models Eloquent
 });
 ```
 
