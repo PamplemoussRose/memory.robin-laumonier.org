@@ -5,6 +5,7 @@ date: "2026-07-27"
 categories: ["tuto"]
 tags: ["site web", "framework", "php", "laravel"]
 layout: "page"
+showBreadcrumbs: true
 draft: "false" # Set to true if this page is not to be shown
 ---
 

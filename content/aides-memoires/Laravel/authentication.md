@@ -5,6 +5,7 @@ date: "2026-07-24"
 categories: ["tuto"]
 tags: ["site web", "framework", "php", "laravel"]
 layout: "page"
+showBreadcrumbs: true
 draft: "false" # Set to true if this page is not to be shown
 ---
 
@@ -219,7 +220,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->redirectGuestsTo('/login');
-        $middleware->redirectGuestsTo('/home');
+        $middleware->redirectGuestsTo('/');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
@@ -232,6 +233,25 @@ return Application::configure(basePath: dirname(__DIR__))
 
 ```php
 Route::get('/login', [SessionsController::class, 'create'])->name('login');
+```
+
+---
+
+## Filter sur l'utilisateur actuel
+
+Pour que chaque utilisateur ne vois que ses propres éléments, nous allons chercher en base de données uniquement les lignes qui le concernent.
+
+Pour ce faire, nous allons changer la requête vers la base de données :
+
+```php
+// Requête globale
+$posts = Post::all()
+// Requête pour récupérer uniquement les lignes de l'utilisateur
+$posts = Post::query()->where([
+    'user_id' => Auth::id(),
+])->get();
+    // OU si vous avew définit des relations entre vos models Eloquents
+$posts = Auth::user()->posts;
 ```
 
 ---

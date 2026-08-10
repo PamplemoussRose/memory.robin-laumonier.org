@@ -5,6 +5,7 @@ date: "2026-07-28"
 categories: ["tuto"]
 tags: ["site web", "framework", "php", "laravel"]
 layout: "page"
+showBreadcrumbs: true
 draft: "false" # Set to true if this page is not to be shown
 ---
 
@@ -112,7 +113,7 @@ Schema::create('posts', function (Blueprint $table) {
 
     // OU
 
-    $table->foreignIdFor(User::class)->constained()->cascadeOnDelete();
+    $table->foreignIdFor(User::class)->constained()->cascadeOnDelete()->cascadeOnUpdate();
     // Cette methode ne fonctionne qu'avec les models Eloquent
 });
 ```
@@ -331,6 +332,82 @@ Par exemple, pour afficher tous les posts, nous allons lier la méthode `index` 
 ```php
 Route::get('/post', [PostController::class, 'index']);
 ```
+
+### Relation entre les models
+
+Eloquent permet de représenter les relations entre les tables au niveau des models. 
+
+#### Relation One-to-One
+
+Pour une relation One-to-One (entre un utilisateur et un téléphone par exemple), il faut ajouter une fonction dans chaque model :
+
+Dans le model `app/Models/User.php` :
+
+```php
+public function phone(): HasOne
+    {
+        return $this->hasOne(Phone::class);
+    }
+```
+
+Dans le model `app/Models/Phone.php` :
+
+```php
+public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+```
+
+Ces méthodes vont permetre d'utiliser `$user->phone` et `$phone->user` pour acceder au téléphone depuis l'utilisateur et à l'utilsateur depuis le téléphone.
+
+#### Relation One-to-Many
+
+Pour une relation One-to-One (entre un articles et des commentaires par exemple), il faut ajouter une fonction dans chaque model :
+
+Dans le model `app/Models/Post.php` :
+
+```php
+public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+```
+
+Dans le model `app/Models/Comment.php` :
+
+```php
+public function post(): BelongsTo
+    {
+        return $this->belongsTo(Post::class);
+    }
+```
+
+Ces méthodes vont permetre d'utiliser `$post->comments` pour acceder à la liste des commentaires de l'article et `$comment->post` pour acceder à l'article auquel est relié le commentaire.
+
+#### Relation Many-to-Many
+
+Pour une relation One-to-One (entre des utilisateur et des rôles par exemple), il faut s'assurer que la table pivot est bien présente dans la base de données puis ajouter une fonction dans chaque model :
+
+Dans le model `app/Models/User.php` :
+
+```php
+public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class);
+    }
+```
+
+Dans le model `app/Models/Role.php` :
+
+```php
+public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
+```
+
+Ces méthodes vont permetre d'utiliser `$user->roles` pour acceder à la liste des rôles que possede l'utilsiateur et `$role->users` pour acceder à la liste des utilisateurs ayant le rôle.
 
 ### SELECT
 
