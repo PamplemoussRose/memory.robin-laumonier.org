@@ -415,7 +415,7 @@ Pour selectionner des lignes dans la base de donnée avec Eloquent, nous utiliso
 
 ```php
 // Pour avoir tous les posts
-$posts = Post::all()
+$posts = Post::all();
 // Pour filtrer sur une colonne
 $posts = Post::where('title', 'title_exemple')->get();
 ```
@@ -433,6 +433,12 @@ Route::get('/post', function() {
         $query->where('state', $name);
     })->get();
 })
+```
+
+Si vous utilisez le système de session, vous pouvez selectionner uniquement les éléments reliés à l'utilisateur en utlisant le code suivant :
+
+```php
+$points => Auth::user()->points;
 ```
 
 ### INSERT
@@ -460,6 +466,18 @@ Route::post('/post', function () {
 ```
 
 Lors de la création d'objet en base de données avec Eloquent, les timestamps sont mis à jour automatiquement.
+
+Si vous utilisez le système de session, vous pouvez ajouter un élément relié à l'utilisateur en utlisant le code suivant :
+
+```php
+Auth::user()->points()->create([
+            'name' => request('name'),
+            'lat' => request('lat'),
+            'lng' => request('lng'),
+        ]);
+```
+
+Il n'y a pas besoin de spécifier l'ID de l'utilisateur car il est ajouté automatiquement avec `Auth::user()`.
 
 ### UPDATE
 

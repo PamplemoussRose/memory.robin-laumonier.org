@@ -255,3 +255,66 @@ $posts = Auth::user()->posts;
 ```
 
 ---
+
+## Accéès aux pages selon un rôle
+
+Si vous avez des pages qui sont accessibles selon des rôles utilisateur, vous pouvez définir des règles appelées *Gates* dans le fichier `app/Providers/AppServiceProvider.php`.
+
+Ces gates sont plcées dans la méthodes `boot` et renvoient des booléens après avoir vérifier les autorisations de l'utilisateur :
+
+```php
+    public function boot(): void
+    {
+        Gate::define('view-admin', function (User $user) {
+            return $user->isAdmin();
+        });
+
+        // Autres gates...
+    }
+```
+
+Il est possible de customiser le code de renvoie de la gate avec la classe `Illuminate\Auth\Access\Response` qui propose :
+
+- `allow()`
+- `deny()`
+- `denyWithStatus()`
+- `denyAsNotFound()`
+
+Ces gates peuvent être utilisées pour protéger des éléments dans les pages ou des endpoints du site.
+
+Pour les éléments d'une page, la protection se fait via la directive `@can()` avec le nom de la gate :
+
+```php
+@can('view-admin')
+    <a href="/admin">Admin<a>
+@endcan
+```
+
+Pour la securisation des endpoints du site, vous pouvez le faire soit par groupe dans `web.php`, soit par route dans le controller utilisé par la route.
+
+Dans `web.php` :
+
+```php
+Route::can('view-admin')->group(function () {
+
+    // Routes à protéger
+
+}
+
+// OU
+
+Route::get('/posts', [PostController::class, 'index'])->can('view-admin');
+```
+
+Dans le controller :
+
+```php
+
+public function index()
+    {
+        Gate::authorize('view-admin');
+        // Reste de la méthode
+    }
+```
+
+---
