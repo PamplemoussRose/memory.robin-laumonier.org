@@ -318,3 +318,40 @@ public function index()
 ```
 
 ---
+
+## Règles sur les models
+
+Laravel porpose d'appliquer des règles aux model en utilisant des `policy`. Vous pouvez les créer et les lier aux models avec la commande suivante :
+
+```sh
+php artisan make:policy PostPolicy --model=Post
+```
+
+Cela va créer le dossier `app/policies` s'il n'existe pas et y placer les fichiers `policy`.
+
+Lorsau'il est généré, le fichier policy contient plusieurs méthodes que vous pouvez renommer ou compléter selon les rèlges que vous voulez mettre :
+
+```php
+/**
+ * Determine whether the user can view the model.
+ */
+public function view(User $user, Post $post): Response
+{
+    // Logique de contrôle
+    return $user->id === $point->user_id ? Response::allow() : Response::denyAsNotFound();
+}
+```
+
+Pour l'utilistion des policies dans le code, nous allons faire appel aux gates avec le nom de la policy et l'objet sur lequel l'appliquer.
+
+Par exemple, dans un controller :
+
+```php
+    public function show(Post $post)
+    {
+        Gate::authorize('update', $post);
+        return view('post.show', ['post' => $post]);
+    }
+```
+
+---
